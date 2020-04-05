@@ -1,1 +1,1 @@
-web: gunicorn golftrips.wsgi:application
+web: gunicorn golfvouchers.wsgi:application

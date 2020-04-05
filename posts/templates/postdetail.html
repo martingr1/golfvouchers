@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}    
+
+ <div class="row">
+        <div class="col-md-2 col-sm-3 text-center">
+            <a class="story-img" href="#">
+                <img src="/media/img/profile.jpg" class="img-circle">
+            </a>
+            <p><span class="boldtext">Author:</span> </p>
+        </div>
+        <div class="col-sm-10 col-md-9">
+            {% if post.image %}
+                <img class="img-post" src="/media/{{ post.image }}">
+            {% endif %}
+            <h3>{{ post.title }}</h3>
+            <div class="row">
+                <div class="col-xs-9">
+                    <p>{{ post.content }}</p>
+                    <p><span class="boldtext">Published on:</span> {{ post.listed_date }} </p>
+                    <p><span class="boldtext">Views:</span> {{post.views}}</p>
+                    <p><span class="boldtext">Tag:</span> {{ post.tag }}</p>
+                    <a href="{% url 'get_posts' %}" class="btn btn-default">Back to Blog</a>
+                    <a href="{% url 'edit_post' post.id %}" class="btn btn-default">Edit Post</a>
+                    <a href="{% url 'edit_post' post.id %}" class="btn btn-default">Book this GolfTrip</a>
+                    <hr>
+                </div>
+                <form method="post" action="{% url 'add_to_cart' post.id %}">
+                    {% csrf_token %}
+                    <div class="input-group">
+                        <input name="quantity" type="number" min="1" max="999" class="form-control" placeholder="Quantity">
+                        <span class="input-group-btn">
+                            <button class="btn btn-success" type="submit">Add</button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

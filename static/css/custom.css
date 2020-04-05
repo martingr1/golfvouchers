@@ -1,0 +1,256 @@
+/*.navbar-form input, .form-inline input {
+    width: auto;
+}
+
+.navbar.affix {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.navbar-brand{
+    padding: 10px 10px;
+}
+
+*/
+body {
+    font-family: Arial;
+    padding-top: 50px;
+}
+
+footer {
+    margin-top: 40px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: #ededed;
+}
+
+h1, h1 a {
+    color: #555555;
+    text-decoration: none;
+}
+
+#masthead {
+    padding-left:10px;
+    min-height: 199px;
+}
+
+#masthead h1 {
+    font-size: 55px;
+    line-height: 1;
+    margin-top: 50px;
+}
+
+#masthead .well{
+    margin-top: 31px;
+    min-height: 127px;
+}
+
+#logo {
+    color: #12AB82;
+}
+
+.story-img {
+    margin-top: 25%;
+    display: block;
+}
+
+a, a:hover {
+    color: #223344;
+    text-decoration: none;
+}
+
+.icon-bar {
+    background-color: #fff;
+}
+
+.dropdown-menu {
+    min-width: 250px;
+}
+
+.panel {
+    border-color: transparent;
+    border-radius: 0;
+}
+
+.thumbnail {
+    margin-bottom: 8px;
+}
+
+.img-container {
+    overflow: hidden;
+    height: 170px;
+}
+
+.img-container img {
+    min-width: 280px;
+    min-height: 180px;
+    max-width: 380px;
+    max-height: 280px;
+}
+
+.img-circle{
+    width:100px;
+    height: 100px; 
+}
+
+.img-post{
+    height: 300px;
+    width: auto;
+}
+
+.txt-container {
+    overflow: hidden;
+    height: 100px;
+}
+
+.panel .lead {
+    overflow: hidden;
+    height: 90px;
+}
+
+.label-float {
+    margin: 0 auto;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+    opacity: .9;
+    padding: 6px;
+    color: #fff;
+}
+
+.boldtext{
+    font-weight: bold;
+}
+
+@media screen and (min-width: 768px) {
+    #masthead h1 {
+        font-size: 80px;
+    }
+}
+
+.main-card {
+    color: #D7E5E4;
+}
+
+.card{
+margin: 5%;
+background-color: rgba(0,0,0,0.5) !important;
+}
+
+.card-header {
+    color: whitesmoke;
+}
+
+.card-footer {
+    color: whitesmoke;
+}
+
+.card-deck {
+    margin: 0;
+}
+
+.card-img-top {
+    max-width: 100%;
+    height: 27vh;
+}
+
+
+.review-text{
+    margin: auto;
+    padding: .5%;
+    font-size: 15px;
+}
+
+.intro-light {
+    color: #CDCDCD;
+    margin: 5px;
+    padding: 2px;
+}
+
+.like-text {
+    margin-bottom: 5px;
+    margin-left: 5px;
+}
+
+.links{
+color: whitesmoke;
+}
+
+/* --- Button and Form styles --- */
+
+.btn{
+color: white;
+background-color: #2F7320;
+border-color: #2F7320;
+width: 150px;
+height: 40px;
+padding: 5px;
+margin: 5px;
+}
+
+.rev-btn {
+    height: 42px;
+    width: 50px;
+    padding: 10px%;
+    margin-bottom: 5px;
+    margin-left: 5px;
+}
+
+.btn:hover{
+color: #2F7320;
+background-color: white;
+border-color:#2F7320;
+}
+
+.filters-btn {
+    max-width: 250px;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-bottom: 10px;
+}
+
+.btn-icon {
+    padding-left: 5%;
+    margin: 0 auto;
+}
+
+.btn-cancel {
+    color: black;
+    background-color:rgb(121, 120, 120);
+    border-color: rgb(121, 120, 120);
+    width: 150px;
+    height: 40px;
+    padding: 5px;
+}
+
+.btn-cancel:hover{
+color: rgb(121, 120, 120);
+background-color: white;
+border-color: rgb(121, 120, 120)
+}
+
+.btn-cancel-white {
+    color: black;
+    background-color:whitesmoke);
+    border-color: black;
+    width: 150px;
+    height: 40px;
+    padding: 5px;
+}
+
+.btn-cancel-white:hover{
+color: rgb(121, 120, 120);
+background-color: white;
+border-color: rgb(121, 120, 120)
+}
+
+.filters {
+    min-width: 200px;
+    max-width: 300px;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin: 5px;
+}
+

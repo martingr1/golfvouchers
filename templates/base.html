@@ -1,0 +1,84 @@
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html>
+
+<head>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+		integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<link rel="stylesheet" href="{% static 'css/custom.css' %}" type="text/css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    {% block head_js %}
+    {% endblock head_js %}
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>GolfTrips</title>
+</head>
+
+<body>
+
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<a class="navbar-brand" href="{% url 'index' %}">GolfTrips</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				
+				{% if user.is_authenticated %}
+                <li class="nav-item"><a href="{% url 'index' %}">Home</a></li>
+				<li class="nav-item"><a href="{% url 'logout' %}">Log Out</a></li>
+				<li class="nav-item"><a href="{% url 'profile' %}">Profile</a></li>
+				<li class="nav-item"><a href="{% url 'view_cart' %}">View Cart</a></li>
+				{% else %}
+				<li class="nav-item"><a href="{% url 'login' %}">Log In</a></li>
+				<li class="nav-item"><a href="{% url 'register' %}">Register</a></li>
+				{% endif %}
+			</ul>
+			<form action= "{% url 'search' %}" class="form-inline my-2 my-lg-0">
+				<input class="form-control mr-sm-2" type="text" name="q" placeholder="Search" aria-label="Search">
+				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+			</form>
+		</div>
+	</div>
+	<nav>
+		<ul>
+			{% if user.is_authenticated %}
+			<li><a href="{% url 'logout' %}">Logout</a></li>
+			<li><a href="{% url 'profile' %}">Profile</a></li>
+			{% else %}
+			<li><a href="{% url 'login' %}">Login</a></li>
+			<li><a href="{% url 'register' %}">Register</a></li>
+			{% endif %}
+		</ul>
+	</div>
+</nav>
+	<hr> {% if messages %}
+	<div>
+		{% for message in messages %} {{ message }} {% endfor %}
+	</div>
+	{% endif %}
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="panel">
+					<div class="panel-body">
+						<!-- posts -->
+						{% block content %}
+						{% endblock %}
+						<!-- posts -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer>
+		<div class="container">
+			<p>Footer will go here</p>
+		</div>
+	</footer>
+</body>
+</html>

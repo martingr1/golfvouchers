@@ -13,128 +13,48 @@
 }
 
 */
-body {
-    font-family: Arial;
-    padding-top: 50px;
+@import url('https://fonts.googleapis.com/css?family=Numans');
+
+/* --- Global styles --- */
+
+.jumbotron {
+    background-image: url("/static/images/turnberry.jpg");
+    background-position: 50% 50%;
 }
 
-footer {
-    margin-top: 40px;
-    padding-top: 40px;
-    padding-bottom: 40px;
-    background-color: #ededed;
-}
-
-h1, h1 a {
-    color: #555555;
-    text-decoration: none;
-}
-
-#masthead {
-    padding-left:10px;
-    min-height: 199px;
-}
-
-#masthead h1 {
-    font-size: 55px;
-    line-height: 1;
-    margin-top: 50px;
-}
-
-#masthead .well{
-    margin-top: 31px;
-    min-height: 127px;
-}
-
-#logo {
-    color: #12AB82;
-}
-
-.story-img {
-    margin-top: 25%;
-    display: block;
-}
-
-a, a:hover {
-    color: #223344;
-    text-decoration: none;
-}
-
-.icon-bar {
-    background-color: #fff;
-}
-
-.dropdown-menu {
-    min-width: 250px;
-}
-
-.panel {
-    border-color: transparent;
-    border-radius: 0;
-}
-
-.thumbnail {
-    margin-bottom: 8px;
-}
-
-.img-container {
-    overflow: hidden;
-    height: 170px;
-}
-
-.img-container img {
-    min-width: 280px;
-    min-height: 180px;
-    max-width: 380px;
-    max-height: 280px;
-}
-
-.img-circle{
-    width:100px;
-    height: 100px; 
-}
-
-.img-post{
-    height: 300px;
-    width: auto;
-}
-
-.txt-container {
-    overflow: hidden;
-    height: 100px;
-}
-
-.panel .lead {
-    overflow: hidden;
-    height: 90px;
-}
-
-.label-float {
-    margin: 0 auto;
+.footer {
     position: absolute;
-    top: 0;
-    z-index: 1;
+    bottom: 0;
     width: 100%;
-    opacity: .9;
-    padding: 6px;
-    color: #fff;
+    background-color: rgba(0,0,0,0.5) !important;
 }
 
-.boldtext{
-    font-weight: bold;
+.fab {
+margin-left: 5px;
+margin-right: 5px;
 }
 
-@media screen and (min-width: 768px) {
-    #masthead h1 {
-        font-size: 80px;
-    }
+html { position: relative; min-height: 100%; }
+
+.my-5 {
+    border-color: #636363;
 }
+.no-gutters {
+    margin-bottom: 2%;
+}
+
+.form-inline {
+    margin: 1%;
+}
+
+/* --- Card styles --- */
 
 .main-card {
     color: #D7E5E4;
 }
 
 .card{
+opacity: 0.9;
 margin: 5%;
 background-color: rgba(0,0,0,0.5) !important;
 }
@@ -154,28 +74,6 @@ background-color: rgba(0,0,0,0.5) !important;
 .card-img-top {
     max-width: 100%;
     height: 27vh;
-}
-
-
-.review-text{
-    margin: auto;
-    padding: .5%;
-    font-size: 15px;
-}
-
-.intro-light {
-    color: #CDCDCD;
-    margin: 5px;
-    padding: 2px;
-}
-
-.like-text {
-    margin-bottom: 5px;
-    margin-left: 5px;
-}
-
-.links{
-color: whitesmoke;
 }
 
 /* --- Button and Form styles --- */
@@ -254,3 +152,52 @@ border-color: rgb(121, 120, 120)
     margin: 5px;
 }
 
+/* --- Text styles --- */
+
+.review-text{
+    margin: auto;
+    padding: .5%;
+    font-size: 15px;
+}
+
+.intro-light {
+    color: #CDCDCD;
+    margin: 5px;
+    padding: 2px;
+}
+
+.like-text {
+    margin-bottom: 5px;
+    margin-left: 5px;
+}
+
+.links{
+color: whitesmoke;
+}
+
+/* --- Images and Icons --- */
+
+.affiliate-img {
+    height: 50px;
+    width: 160px;
+    padding: 2px;
+}
+
+.login-icon {
+    font-size: 20px;
+}
+
+
+.login {
+    padding: 2%;
+}
+
+.login-nav {
+    padding-right: 2px;
+    color: whitesmoke;
+    font-size: 20px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: white;
+    margin: 1%;
+}

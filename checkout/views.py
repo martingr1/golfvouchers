@@ -12,13 +12,14 @@ stripe.api_key = settings.STRIPE_SECRET
 
 @login_required
 def checkout(request):
-    if request.method =='POST':
+    if request.method == 'POST':
         order_form = OrderForm(request.POST)
         payment_form = MakePaymentForm(request.POST)
 
         if order_form.is_valid() and payment_form.is_valid():
             order = order_form.save(commit=False)
             order.date = timezone.now()
+            order.save()
 
             cart = request.session.get('cart', {})
             total = 0
@@ -27,7 +28,7 @@ def checkout(request):
                 total += quantity * product.price
                 order_line_item = OrderLineItem(
                     order= order,
-                    product= product, 
+                    post= product, 
                     quantity= quantity)
                 order_line_item.save()
             
@@ -50,6 +51,7 @@ def checkout(request):
                 messages.error(request, "Unable to take payment")
         else: 
             print(payment_form.errors)
+            print(payment_form)
             messages.error(request, "Unable to take payment from card, please try another payment method")
     else:
         payment_form = MakePaymentForm()

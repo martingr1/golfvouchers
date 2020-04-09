@@ -17,6 +17,11 @@
 </head>
 
 <body>
+	<style>
+		body {
+			background-color: #636363;
+		}
+	</style>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
 		<a class="navbar-brand" href="{% url 'index' %}">GolfVouchers</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,7 +33,9 @@
 				<li class="nav-item active"><a href="{% url 'index' %}">Home</a></li>
 				<li class="nav-item active"><a href="{% url 'logout' %}">Log Out</a></li>
 				<li class="nav-item active"><a href="{% url 'profile' %}">Profile</a></li>
-				<li class="nav-item"><a href="{% url 'view_cart' %}">View Cart</a></li>
+				<li class="nav-item"><a href="{% url 'view_cart' %}">View Cart{% for item in cart_items %}     ({{ item.quantity }})           
+                {% endfor %}
+                </a></li>
 				{% else %}
 				<li class="nav-item"><a href="{% url 'login' %}">Log In</a></li>
 				<li class="nav-item"><a href="{% url 'register' %}">Register</a></li>
@@ -38,6 +45,12 @@
 				<input class="form-control mr-sm-2" type="text" name="q" placeholder="Search" aria-label="Search">
 				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 			</form>
+		</div>
+		<div class="login-nav d-flex align-items-center justify-content-center">
+
+			{% if user.is_authenticated %}
+			<i class="material-icons login-icon">account_box</i>{{ user }}
+			{% endif %}
 		</div>
 	</nav>
 	<hr> {% if messages %}

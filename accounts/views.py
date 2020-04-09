@@ -64,24 +64,6 @@ def register(request):
         registration_form = UserRegistrationForm()
     return render(request, 'register.html', {"registration_form": registration_form})
 
-    if request.method == "POST":
-        registration_form = UserRegistrationForm(request.POST)
-
-        if registration_form.is_valid():
-            registration_form.save()
-
-            user = auth.authenticate(username=request.POST['username'], password =request.POST['password1'])
-        
-            if user:
-                auth.login(user=user, request=request)
-                messages.success(request, "You have successfully registered with GolfTrips! Please log in.")
-                return redirect(reverse('login'))
-            else:
-                messages.error(request, "Sorry, we were unable to register your account")
-    else:
-        registration_form = UserRegistrationForm()
-    return render(request, 'register.html', {"registration_form": registration_form})
-
 
 @login_required
 def profile(request):
@@ -89,9 +71,4 @@ def profile(request):
     user = User.objects.get(email=request.user.email)
     return render(request, 'profile.html', {'profile': user})
 
-@login_required
-def profile(request):
-    """A view that displays the profile page of a logged in user"""
-    user = User.objects.get(email=request.user.email)
-    return render(request, 'profile.html', {'profile': user})
 

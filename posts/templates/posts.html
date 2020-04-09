@@ -1,19 +1,22 @@
 {% extends 'base.html' %}
 {% block content %}
+{% if user.is_staff %}
 <div>
 	<div class="card">
+    Admin Panel
 		<p class="review-text like-text lead"></p>
 		<a class="btn rev-btn" data-toggle="tooltip" data-placement="top" title="View and purchase"
 			href="{% url 'new_post' %}">Create a new voucher
 		</a>
 	</div>
 </div>
+{% endif %}
 <div class="container">
 	<div class="row">
 		{% for post in posts %}
 		<div class="card-deck col-xs-12 col-md-6">
 			<div class="card text-white bg-dark ">
-				<img class="card-img-top img-fluid default-image" src="/media/{{ post.image }}" alt="Product image">
+				<img class="card-img-top img-fluid default-image" src="{{ MEDIA_URL }}{{ post.image }}" alt="Product image">
 				<div class="card-header">
 					<div class="card-title">
 						<a class="lead" data-toggle="tooltip" data-placement="top" title="View and purchase"
@@ -38,7 +41,7 @@
 					</div>
 				</div>
 			</div>
-			{% endfor %}
 		</div>
+        {% endfor %}
 	</div>
 	{% endblock %}

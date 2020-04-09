@@ -10,7 +10,7 @@ class Post(models.Model):
     updated_date = models.DateTimeField(blank=True, null=True, default=timezone.now)
     views = models.IntegerField(default=0)
     tag = models.CharField(max_length=30, blank=True, null=True)
-    image = models.ImageField(upload_to="img", blank="True", null="True")
+    image = models.ImageField(upload_to="img")
     price = models.DecimalField(max_digits=6, decimal_places=0, null=False)
 
     def __unicode__(self):

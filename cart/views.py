@@ -14,12 +14,15 @@ def add_to_cart(request, id):
 
     product = get_object_or_404(Post, pk=id)
     initial_quantity = product.initial_quantity
+    quantity = int(request.POST.get('quantity'))
 
     if initial_quantity == 0:
         messages.error(request,  "Sorry, that item is sold out")
         return redirect(reverse('index'))
+    elif quantity > initial_quantity:
+        messages.error(request,  "Sorry, not enough items in stock to fulfill request")
+        return redirect(reverse('index'))
     else:
-        quantity = int(request.POST.get('quantity'))
         cart = request.session.get('cart', {})
         cart[id] = cart.get(id, quantity)
         request.session['cart'] = cart

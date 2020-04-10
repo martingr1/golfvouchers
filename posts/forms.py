@@ -5,7 +5,7 @@ from .models import Post
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ('title', 'content', 'image', 'tag', 'price')
+        fields = ('title', 'content', 'image', 'tag', 'price', 'initial_quantity')
         
         
 class DateForm(forms.Form):

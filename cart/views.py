@@ -1,5 +1,8 @@
-from django.shortcuts import render, redirect, reverse
-from django.contrib.auth.decorators import login_required 
+from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from posts.models import Post
+
 
 @login_required
 def view_cart(request):
@@ -8,14 +11,19 @@ def view_cart(request):
 
 @login_required
 def add_to_cart(request, id):
-    
-    quantity = int(request.POST.get('quantity'))
 
-    cart = request.session.get('cart', {})
-    cart[id] = cart.get(id, quantity)
+    product = get_object_or_404(Post, pk=id)
+    initial_quantity = product.initial_quantity
 
-    request.session['cart'] = cart
-    return redirect(reverse('index'))
+    if initial_quantity == 0:
+        messages.error(request,  "Sorry, that item is sold out")
+        return redirect(reverse('index'))
+    else:
+        quantity = int(request.POST.get('quantity'))
+        cart = request.session.get('cart', {})
+        cart[id] = cart.get(id, quantity)
+        request.session['cart'] = cart
+        return redirect(reverse('index'))
 
 @login_required
 def adjust_cart(request, id):

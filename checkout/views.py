@@ -44,6 +44,8 @@ def checkout(request):
             
             if customer.paid:
                 messages.error(request, "Transaction complete")
+                product.initial_quantity = product.initial_quantity - quantity
+                product.save()
                 request.session['cart'] = {}
                 return redirect(reverse('get_posts'))
 

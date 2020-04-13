@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, reverse
+from django.core.mail import send_mail
 from accounts.forms import UserLoginForm, UserRegistrationForm
 from django.contrib import auth, messages
 from django.contrib.auth.models import User
@@ -56,7 +57,7 @@ def register(request):
         
             if user:
                 auth.login(user=user, request=request)
-                messages.success(request, "You have successfully registered with GolfTrips! Please log in.")
+                messages.success(request, "You have successfully registered with GolfVouchers! Please log in.")
                 return redirect(reverse('login'))
             else:
                 messages.error(request, "Sorry, we were unable to register your account")

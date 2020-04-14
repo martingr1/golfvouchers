@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
+from django.core.mail import send_mail, EmailMultiAlternatives
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import OrderForm, MakePaymentForm
@@ -6,6 +7,7 @@ from .models import OrderLineItem
 from django.conf import settings
 from posts.models import Post
 from django.utils import timezone
+from django.template.loader import get_template
 import stripe
 
 stripe.api_key = settings.STRIPE_SECRET
@@ -47,6 +49,16 @@ def checkout(request):
                 product.initial_quantity = product.initial_quantity - quantity
                 product.save()
                 request.session['cart'] = {}
+                subject = "Thank you for registering with Golf Vouchers"
+                from_email = settings.EMAIL_HOST_USER
+                to_email = [request.user.email]
+                with open(settings.BASE_DIR + "/templates/account/email/checkout.txt") as f:
+                    signup_message = f.read()
+                message = EmailMultiAlternatives(subject=subject, body=signup_message, from_email=from_email,
+                    to=to_email)
+                html_template = get_template("checkout_email.html").render()
+                message.attach_alternative(html_template, "text/html")
+                message.send()
                 return redirect(reverse('get_posts'))
 
             else:

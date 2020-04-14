@@ -1,9 +1,11 @@
+from django.conf import settings
 from django.shortcuts import render, redirect, reverse
-from django.core.mail import send_mail
+from django.core.mail import send_mail, EmailMultiAlternatives
 from accounts.forms import UserLoginForm, UserRegistrationForm
 from django.contrib import auth, messages
 from django.contrib.auth.models import User
-from django.contrib.auth.decorators import login_required 
+from django.contrib.auth.decorators import login_required
+from django.template.loader import get_template
 
 
 def index(request):
@@ -58,6 +60,16 @@ def register(request):
             if user:
                 auth.login(user=user, request=request)
                 messages.success(request, "You have successfully registered with GolfVouchers! Please log in.")
+                subject = "Thank you for registering with Golf Vouchers"
+                from_email = settings.EMAIL_HOST_USER
+                to_email = [request.user.email]
+                with open(settings.BASE_DIR + "/templates/account/email/sign_up.txt") as f:
+                    signup_message = f.read()
+                message = EmailMultiAlternatives(subject=subject, body=signup_message, from_email=from_email,
+                    to=to_email)
+                html_template = get_template("sign_up.html").render()
+                message.attach_alternative(html_template, "text/html")
+                message.send()
                 return redirect(reverse('login'))
             else:
                 messages.error(request, "Sorry, we were unable to register your account")

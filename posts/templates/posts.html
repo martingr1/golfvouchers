@@ -3,7 +3,7 @@
 {% if user.is_staff %}
 <div>
 	<div class="card">
-    Admin Panel
+		Admin Panel
 		<p class="review-text like-text lead"></p>
 		<a class="btn rev-btn" data-toggle="tooltip" data-placement="top" title="View and purchase"
 			href="{% url 'new_post' %}">Create a new voucher
@@ -14,8 +14,8 @@
 <div class="container">
 	<div class="row">
 		{% for post in posts %}
-		<div class="card-deck col-xs-12 col-md-6">
-			<div class="card text-white bg-dark ">
+		<div class="card-deck col-xs-12 col-sm-6 col-md-4">
+			<div class="card text-white">
 				<img class="card-img-top img-fluid default-image" src="{{ MEDIA_URL }}{{ post.image }}" alt="Product image">
 				<div class="card-header">
 					<div class="card-title">
@@ -23,25 +23,11 @@
 							href="{% url 'post_detail' post.id %}">{{post.title}}</a>
 					</div>
 					<div class="row review-text lead">
-
-						<p>Price: £{{ post.price }}</p>
-						<p>Views: {{post.views}}</p>
-						<p>Tags: {{ post.tag }}</p>
-					</div>
-					<div class="card-body">
-						<p class="review-text lead">{{ post.content|truncatewords:30 }}</p>
-					</div>
-					<div class="card-footer">
-						<p class="review-text like-text lead"></p>
-						<a class="btn rev-btn" data-toggle="tooltip" data-placement="top" title="View and purchase"
-							href="{% url 'post_detail' post.id %}">
-							<i class="material-icons">shopping_basket</i>
-						</a>
-						<p>Listed on: {{ post.listed_date }}</p>
+						<p class= "lead">£{{ post.price }}</p>
 					</div>
 				</div>
 			</div>
 		</div>
-        {% endfor %}
+		{% endfor %}
 	</div>
 	{% endblock %}

@@ -49,7 +49,7 @@ def checkout(request):
                 product.initial_quantity = product.initial_quantity - quantity
                 product.save()
                 request.session['cart'] = {}
-                subject = "Thank you for registering with Golf Vouchers"
+                subject = "Thank you for your order"
                 from_email = settings.EMAIL_HOST_USER
                 to_email = [request.user.email]
                 with open(settings.BASE_DIR + "/templates/account/email/checkout.txt") as f:

@@ -2,11 +2,11 @@
 {% block content %}
 {% if user.is_staff %}
 <div>
-	<div class="card">
-		Admin Panel
-		<p class="review-text like-text lead"></p>
-		<a class="btn rev-btn" data-toggle="tooltip" data-placement="top" title="View and purchase"
-			href="{% url 'new_post' %}">Create a new voucher
+	<div class="card text-white">
+		
+		<p class="lead">Admin Panel</p>
+		<a class="btn " data-toggle="tooltip" data-placement="top" title="View and purchase"
+			href="{% url 'new_post' %}">New Product
 		</a>
 	</div>
 </div>

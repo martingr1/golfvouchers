@@ -2,7 +2,8 @@
 {% block content %}    
 
  <div class="row">
-        <div class="col-sm-10 col-md-9">
+ <a href="{% url 'get_posts' %}" class="btn btn-default">Back</a>
+        <div class="col-xs-12 col-md-6">
             {% if post.image %}
                 <img class="img-post" src="{{ MEDIA_URL }}{{ post.image }}">
             {% endif %}
@@ -10,13 +11,11 @@
             <div class="row">
                 <div class="col-xs-9">
                     <p>{{ post.content }}</p>
-                    <p><span class="boldtext">Published on:</span> {{ post.listed_date }} </p>
+                    <p><span class="boldtext">Date first listed:</span> {{ post.listed_date }} </p>
                     <p><span class="boldtext">Views:</span> {{post.views}}</p>
-                    <p><span class="boldtext">Tag:</span> {{ post.tag }}</p>
-                    <a href="{% url 'get_posts' %}" class="btn btn-default">Back to GolfVouchers</a>
                     <a href="{% url 'edit_post' post.id %}" class="btn btn-default">Purchase</a>
                     {% if user.is_staff %}
-                    <a href="{% url 'edit_post' post.id %}" class="btn btn-default">Edit Voucher</a>
+                    <a href="{% url 'edit_post' post.id %}" class="btn btn-default">Edit Product</a>
                     {% endif %}
                     <hr>
                 </div>

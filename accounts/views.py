@@ -1,12 +1,12 @@
 from django.conf import settings
 from django.shortcuts import render, redirect, reverse
 from django.core.mail import send_mail, EmailMultiAlternatives
-from accounts.forms import UserLoginForm, UserRegistrationForm
 from django.contrib import auth, messages
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from django.template.loader import get_template
-
+from django.template import Context
+from django.template.loader import get_template, render_to_string
+from accounts.forms import UserLoginForm, UserRegistrationForm
 
 def index(request):
     if request.user.is_authenticated:

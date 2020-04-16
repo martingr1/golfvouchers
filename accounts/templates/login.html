@@ -1,18 +1,39 @@
 {% extends 'base.html' %}
-{% block content %}    
+{% block content %}
 
-    <h1>User Login</h1>
-    <hr> {% if messages %}
-    <div>
-        {% for message in messages %} {{ message }} {% endfor %}
+
+{% if messages %}
+<div>
+	{% for message in messages %} {{ message }} {% endfor %}
+</div>
+{% endif %}
+
+<div class="container">
+	<div class="row justify-content-center">
+		<div class="card text-white bg-dark ">
+			<div class="card-header">
+				<h3 class="display-4">Sign In</h3>
+			</div>
+			<!-- Login Section -->
+			<div class="card-body">
+				<form method="POST">
+					{% csrf_token %}
+					{{ login_form }}
+					<button class ="btn" type="submit">Login</button>
+				</form>
+			</div>
+			<div class="card-footer">
+				<div class="row d-flex no-gutters justify-content-center">
+					<p><a href="{% url 'password_reset' %}">Forgotten your password?</a></p>
+				</div>
+			</div>
+		</div>
+	</div>
+    <div class="row justify-content-center">
+    <p class= "lead">New to Golf Vouchers?<p>
     </div>
-    {% endif %}
-
-    <form method="POST">
-    {% csrf_token %}
-        {{ login_form }}
-    <button type="submit">Login</button>
-    </form>
-
-    <p><a href="{% url 'password_reset' %}">Forgotten your password?</a></p>
+    <div class="row justify-content-center">
+    <a class = "btn" href="{% url 'register' %}">Create an account</a></li>
+    </div>
+</div>
 {% endblock %}

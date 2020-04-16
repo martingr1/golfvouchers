@@ -204,7 +204,8 @@ color: whitesmoke;
     margin: 1%;
 }
 
-.cart-img {
-    height: 50px;
-    width: 50px;
+.img-post {
+
+    height: 25vh;
+    width: 25vh;
 }

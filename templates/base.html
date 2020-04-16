@@ -32,14 +32,13 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
 				{% if user.is_authenticated %}
-				<li class="nav-item active"><a href="{% url 'index' %}">Home</a></li>
-				<li class="nav-item active"><a href="{% url 'logout' %}">Log Out</a></li>
-				<li class="nav-item active"><a href="{% url 'profile' %}">Profile</a></li>
-				<li class="nav-item"><a href="{% url 'view_cart' %}">View Cart{% for item in cart_items %}     ({{ item.quantity }})           
+				<li class="nav-item "><a href="{% url 'logout' %}">Sign Out</a></li>
+				<li class="nav-item "><a href="{% url 'profile' %}">Account</a></li>
+				<li class="nav-item"><a href="{% url 'view_cart' %}"><i class="material-icons login-icon">shopping_cart</i>{% for item in cart_items %}     ({{ item.quantity }}) 
                 {% endfor %}
                 </a></li>
 				{% else %}
-				<li class="nav-item"><a href="{% url 'login' %}">Log In</a></li>
+				<li class="nav-item"><a href="{% url 'login' %}">Hello! Sign In</a></li>
 				<li class="nav-item"><a href="{% url 'register' %}">Register</a></li>
 				{% endif %}
 			</ul>
@@ -47,12 +46,13 @@
 				<input class="form-control mr-sm-2" type="text" name="q" placeholder="Search" aria-label="Search">
 				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 			</form>
-		</div>
-		<div class="login-nav d-flex align-items-center justify-content-center">
-
-			{% if user.is_authenticated %}
+		</div>{% if user.is_authenticated %}{% if user.is_staff %}Admin
+		<div class="login-nav d-flex align-items-center justify-content-center">    
 			<i class="material-icons login-icon">account_box</i>{{ user }}
+            {% else %}
+            <i class="material-icons login-icon">account_box</i>{{ user }}
 			{% endif %}
+            {% endif %}
 		</div>
 	</nav>
 {% if messages %}
@@ -69,10 +69,10 @@
 			<div class="col-md-12">
 				<div class="panel">
 					<div class="panel-body">
-						<!-- posts -->
+						
 						{% block content %}
 						{% endblock %}
-						<!-- posts -->
+						
 					</div>
 				</div>
 			</div>

@@ -1,17 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
 {% if user.is_staff %}
-<div>
+<div class="container">
 	<div class="card text-white">
-		
 		<p class="lead">Admin Panel</p>
 		<a class="btn " data-toggle="tooltip" data-placement="top" title="View and purchase"
 			href="{% url 'new_post' %}">New Product
 		</a>
 	</div>
-</div>
 {% endif %}
-<div class="container">
+
 	<div class="row">
 		{% for post in posts %}
 		<div class="card-deck col-xs-12 col-sm-6 col-md-4">

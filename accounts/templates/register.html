@@ -6,10 +6,27 @@
 
 {% block content %}
 
-    <form method="POST">
-    {% csrf_token %}
-        {{ registration_form.as_p }}
-    <button type="submit">Register</button>
-    </form>
+<div class="container">
+	<div class="row justify-content-center">
+		<div class="card text-white bg-dark ">
+			<div class="card-header">
+				<h3 class="display-4">Register</h3>
+			</div>
+			<!-- Login Section -->
+			<div class="card-body">
 
+				<form method="POST">
+					{% csrf_token %}
+					{{ registration_form.as_p }}
+					<button class = "btn" type="submit">Register</button>
+				</form>
+			</div>
+			<div class="card-footer">
+				<div class="row d-flex no-gutters justify-content-center">
+					<p><a href="{% url 'password_reset' %}">Forgotten your password?</a></p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 {% endblock %}

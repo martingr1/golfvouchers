@@ -16,17 +16,21 @@ def add_to_cart(request, id):
     initial_quantity = product.initial_quantity
     quantity = int(request.POST.get('quantity'))
 
+    if quantity == 0:
+        messages.error(request,  "You have not selected any items, please add a quantity to cart")
+        return redirect(reverse("get_posts"))
+
     if initial_quantity == 0:
         messages.error(request,  "Sorry, that item is sold out")
-        return redirect(reverse('index'))
+        return redirect(reverse('get_posts'))
     elif quantity > initial_quantity:
         messages.error(request,  "Sorry, not enough items in stock to fulfill request")
-        return redirect(reverse('index'))
+        return redirect(reverse('get_posts'))
     else:
         cart = request.session.get('cart', {})
         cart[id] = cart.get(id, quantity)
         request.session['cart'] = cart
-        return redirect(reverse('index'))
+        return redirect(reverse('get_posts'))
 
 
 @login_required
@@ -39,6 +43,6 @@ def adjust_cart(request, id):
         cart[id] = quantity
     else:
         cart.pop(id)
-    
+
     request.session['cart'] = cart
     return redirect(reverse('view_cart'))

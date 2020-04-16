@@ -13,7 +13,6 @@
                     <p>{{ post.content }}</p>
                     <p><span class="boldtext">Date first listed:</span> {{ post.listed_date }} </p>
                     <p><span class="boldtext">Views:</span> {{post.views}}</p>
-                    <a href="{% url 'edit_post' post.id %}" class="btn btn-default">Purchase</a>
                     {% if user.is_staff %}
                     <a href="{% url 'edit_post' post.id %}" class="btn btn-default">Edit Product</a>
                     {% endif %}
@@ -22,9 +21,9 @@
                 <form method="post" action="{% url 'add_to_cart' post.id %}">
                     {% csrf_token %}
                     <div class="input-group">
-                        <input name="quantity" type="number" min="1" max="99" class="form-control" placeholder="Quantity">
+                        <input name="quantity" value="0" type="number" min="0" max="99" class="form-control">
                         <span class="input-group-btn">
-                            <button class="btn btn-success" type="submit">Add</button>
+                            <button class="btn btn-success" type="submit">Purchase</button>
                         </span>
                     </div>
                 </form>

@@ -8,6 +8,7 @@ from django.template import Context
 from django.template.loader import get_template, render_to_string
 from accounts.forms import UserLoginForm, UserRegistrationForm
 
+
 def index(request):
     if request.user.is_authenticated:
         return redirect(reverse('get_posts'))
@@ -18,13 +19,13 @@ def index(request):
 def logout(request):
     auth.logout(request)
     messages.success(request,  "You have successfully been logged out.")
-    return redirect(reverse('index'))
+    return redirect(reverse('get_posts'))
 
 
 def login(request):
     
     if request.user.is_authenticated:
-        return redirect(reverse('index'))
+        return redirect(reverse('get_posts'))
 
     if request.method == "POST":
         login_form = UserLoginForm(request.POST)

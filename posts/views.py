@@ -11,7 +11,6 @@ def get_posts(request):
     return render(request, "posts.html", {'posts': posts})
 
 
-@login_required
 def post_detail(request, pk):
 
     post = get_object_or_404(Post, pk=pk)

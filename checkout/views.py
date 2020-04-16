@@ -12,11 +12,22 @@ import stripe
 
 stripe.api_key = settings.STRIPE_SECRET
 
+
 @login_required
 def checkout(request):
     if request.method == 'POST':
-        order_form = OrderForm(request.POST)
-        payment_form = MakePaymentForm(request.POST)
+
+        quantity = int(request.POST.get('quantity'))
+        print(quantity)
+
+        if quantity == 0:
+            messages.error(request, "No items in cart")
+            return redirect(reverse('get_posts'))
+
+        else:
+
+            order_form = OrderForm(request.POST)
+            payment_form = MakePaymentForm(request.POST)
 
         if order_form.is_valid() and payment_form.is_valid():
             order = order_form.save(commit=False)
@@ -26,13 +37,14 @@ def checkout(request):
             cart = request.session.get('cart', {})
             total = 0
             for id, quantity in cart.items():
+                  
                 product = get_object_or_404(Post, pk=id)
                 total += quantity * product.price
                 order_line_item = OrderLineItem(
                     order= order,
                     post= product, 
                     quantity= quantity)
-                order_line_item.save()
+            order_line_item.save()
             
             try:
                 customer = stripe.Charge.create(

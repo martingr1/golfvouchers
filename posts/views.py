@@ -1,13 +1,25 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.contrib.auth.decorators import login_required 
 from .models import Post
 from .forms import PostForm
-from django.contrib.auth.decorators import login_required 
 
 
 def get_posts(request):
 
-    posts = Post.objects.filter(listed_date__lte=timezone.now()).order_by('listed_date')
+    posts_list = Post.objects.filter(listed_date__lte=timezone.now()).order_by('listed_date')
+    p = Paginator(posts_list, 1)
+    page = request.GET.get('page')
+    try:
+        posts = p.page(page)
+    
+    except PageNotAnInteger:
+        posts = p.page(1)
+    
+    except EmptyPage:
+        posts = p.page(p.num_pages)
+
     return render(request, "posts.html", {'posts': posts})
 
 

@@ -11,6 +11,28 @@ CATEGORY_CHOICES = (
 
 )
 
+MANUFACTURER_CHOICES = (
+
+    ('aldila', 'Aldila'),
+    ('ben hogan', 'Ben Hogan'),
+    ('bridgestone', 'Bridgestone'),
+    ('callaway', 'Callaway'),
+    ('cleveland', 'Cleveland'),
+    ('cobra', 'Cobra'),
+    ('footjoy', 'Footjoy'),
+    ('lamkin', 'Lamkin'),
+    ('mizuno', 'Mizuno'),
+    ('odyssey', 'Odyssey'),
+    ('ping', 'PING'),
+    ('pxg', 'PXG'),
+    ('scotty cameron', 'Scotty Cameron'),
+    ('srixon', 'Srixon'),
+    ('taylorMade', 'TaylorMade'),
+    ('titleist', 'Titleist'),
+    ('wilson staff', 'Wilson Staff'),
+
+)
+
 
 class Post(models.Model):
     
@@ -18,8 +40,8 @@ class Post(models.Model):
     content = models.TextField()
     listed_date = models.DateTimeField(auto_now_add=True)
     initial_quantity = models.IntegerField(default=0)
-    category = models.CharField(max_length=10, choices=CATEGORY_CHOICES, default='balls')
-    manufacturer = models.CharField(max_length=25, blank=True, null=True, default='manufacturer')
+    category = models.CharField(max_length=25, choices=CATEGORY_CHOICES, default='balls')
+    manufacturer = models.CharField(max_length=25, choices=MANUFACTURER_CHOICES, blank=True, null=True, default='aldila')
     views = models.IntegerField(default=0)
     tag = models.CharField(max_length=30, blank=True, null=True)
     image = models.ImageField(upload_to="img", blank=True, null=True)

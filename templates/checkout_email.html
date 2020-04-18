@@ -1,26 +1,29 @@
 <!DOCTYPE html>
 <html>
-    <head>
-    </head>
-    <body>
-        <h1>Thank you for your order!</h1>
-        <p>Dear {{ user.get_username }},</p>
 
-        <p>Thank you for your order.</p>
+<head>
+</head>
 
-        <p>Payment has been successful. A summary of your order is below:
-        </p>
-        
-        <div class="caption">
-                    <h3>{{ item.post.title }}</h3>
-                    <p class="product-description">{{ item.post.content }}</p>
-                    <p>{{ item.quantity }}</p>
-                    <p>{{ item.post.price }}</p>
-                </div>
+<body>
+	<h1>Thank you for your order!</h1>
+	<p>Dear {{ user }},</p>
 
-        <p>Best,</p> 
+	<p>Thank you for your order.</p>
 
-        <p>The Golf Vouchers Team.</p>
+	<p>Payment has been successful. A summary of your order is below:
+	</p>
+	{% for item in cart_items %}
+	<div class="caption">
+		<h3>{{ item.post.title }}</h3>
+		<p>{{ item.quantity }}</p>
+		<p>{{ item.post.price }}</p>
+		<p>{{ total }}</p>
+	</div>
+	{% endfor %}
+	<p>Best,</p>
 
-    </body>
+	<p>The Golf Vouchers Team.</p>
+
+</body>
+
 </html>

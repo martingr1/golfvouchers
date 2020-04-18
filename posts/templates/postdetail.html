@@ -11,7 +11,6 @@
             <div class="row">
                 <div class="col-xs-9">
                     <p>{{ post.content }}</p>
-                    <p><span class="boldtext">Date first listed:</span> {{ post.listed_date }} </p>
                     <p><span class="boldtext">Views:</span> {{post.views}}</p>
                     {% if user.is_staff %}
                     <a href="{% url 'edit_post' post.id %}" class="btn btn-default">Edit Product</a>

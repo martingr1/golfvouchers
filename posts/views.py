@@ -10,6 +10,9 @@ from .filters import PostFilter
 def get_posts(request):
 
     posts_list = Post.objects.filter(listed_date__lte=timezone.now()).order_by('listed_date')
+    post_filter = PostFilter(request.GET, queryset=posts_list)
+    posts_list = post_filter.qs
+
     p = Paginator(posts_list, 12)
     page = request.GET.get('page')
     try:
@@ -22,7 +25,7 @@ def get_posts(request):
         posts = p.page(p.num_pages)
 
     context = {
-        'posts': posts,
+        'posts': posts, 'post_filter': post_filter,
 }
 
     return render(request, "posts.html", context)
@@ -49,10 +52,3 @@ def create_or_edit_post(request, pk=None):
     else:
         form = PostForm(instance=post)
     return render(request, 'postform.html', {'form': form})
-
-
-def filter_posts(request):
-    posts_list = Post.objects.filter(listed_date__lte=timezone.now()).order_by('listed_date')
-    myFilter = PostFilter(request.GET, queryset=posts_list)
-    
-    return render(request, 'posts.html', {'filter': myFilter})

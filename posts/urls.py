@@ -1,5 +1,5 @@
 from django.conf.urls import url
-from .views import get_posts, post_detail, create_or_edit_post
+from .views import get_posts, post_detail, create_or_edit_post, filter_posts
 
 urlpatterns = [
 
@@ -7,4 +7,5 @@ urlpatterns = [
     url(r'^(?P<pk>\d+)/$', post_detail, name='post_detail'),
     url(r'^new/$', create_or_edit_post, name='new_post'),
     url(r'^(?P<pk>\d+)/edit/$', create_or_edit_post, name="edit_post"),
+    url(r'^filter/$', filter_posts, name='filter_posts')
 ]

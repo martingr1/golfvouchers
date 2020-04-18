@@ -44,9 +44,9 @@
 				<input class="form-control mr-sm-2" type="text" name="q" placeholder="Search" aria-label="Search">
 				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 			</form>
-		</div>{% if user.is_authenticated %}{% if user.is_staff %}Admin
+		</div>{% if user.is_authenticated %}{% if user.is_staff %}
 		<div class="login-nav d-flex align-items-center justify-content-center">    
-			<i class="material-icons login-icon">account_box</i>{{ user }}
+			<i class="material-icons login-icon">account_box</i>Admin
             {% else %}
             <i class="material-icons login-icon">account_box</i>{{ user }}
 			{% endif %}

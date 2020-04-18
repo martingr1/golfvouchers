@@ -1,14 +1,24 @@
 from django.shortcuts import render
 from django.contrib import messages
+from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from posts.models import Post
 
 
 def do_search(request):
     
-    posts_list = Post.objects.filter(content__icontains=request.GET['q']).order_by('listed_date')
-    p = Paginator(posts_list, 1)
+    posts_list = Post.objects.all()
+    query = request.GET.get('q')
+
+    if query:
+
+        posts_list = Post.objects.filter(
+            Q(title__icontains=query) | Q(content__icontains=query)
+        ).distinct()
+
+    p = Paginator(posts_list, 12)
     page = request.GET.get('page')
+
     try:
         posts = p.page(page)
     
@@ -18,4 +28,7 @@ def do_search(request):
     except EmptyPage:
         posts = p.page(p.num_pages)
 
-    return render(request, "posts.html", {'posts': posts})
+    context = {
+            'posts': posts}
+
+    return render(request, "posts.html", context)

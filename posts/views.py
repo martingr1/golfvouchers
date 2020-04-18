@@ -4,12 +4,13 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required 
 from .models import Post
 from .forms import PostForm
+from .filters import PostFilter
 
 
 def get_posts(request):
 
     posts_list = Post.objects.filter(listed_date__lte=timezone.now()).order_by('listed_date')
-    p = Paginator(posts_list, 1)
+    p = Paginator(posts_list, 12)
     page = request.GET.get('page')
     try:
         posts = p.page(page)
@@ -20,7 +21,11 @@ def get_posts(request):
     except EmptyPage:
         posts = p.page(p.num_pages)
 
-    return render(request, "posts.html", {'posts': posts})
+    context = {
+        'posts': posts,
+}
+
+    return render(request, "posts.html", context)
 
 
 def post_detail(request, pk):
@@ -44,3 +49,10 @@ def create_or_edit_post(request, pk=None):
     else:
         form = PostForm(instance=post)
     return render(request, 'postform.html', {'form': form})
+
+
+def filter_posts(request):
+    posts_list = Post.objects.filter(listed_date__lte=timezone.now()).order_by('listed_date')
+    myFilter = PostFilter(request.GET, queryset=posts_list)
+    
+    return render(request, 'posts.html', {'filter': myFilter})

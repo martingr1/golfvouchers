@@ -12,14 +12,12 @@
 
 	<p>Payment has been successful. A summary of your order is below:
 	</p>
-	{% for item in cart_items %}
 	<div class="caption">
-		<h3>{{ item.post.title }}</h3>
-		<p>{{ item.quantity }}</p>
-		<p>{{ item.post.price }}</p>
+		<h3>{{ post.title }}</h3>
+        <p>{{ post.quantity }}</p>
+		<p>{{ post.price }}</p>
 		<p>{{ total }}</p>
 	</div>
-	{% endfor %}
 	<p>Best,</p>
 
 	<p>The Golf Vouchers Team.</p>

@@ -5,16 +5,16 @@
 
 <div class="jumbotron main-image">
 	<div class="card main-card">
-		<h1 class="display-4">Golf Vouchers</h1>
-		<p class="lead">Golf can be an expensive sport to play. Let us help with that!</p>
-		<p class="lead">Everything on Golf Vouchers is brand new and available at a reduced price. We even have a sale
+		<h1 class="display-4 links">Golf Vouchers</h1>
+		<p class="lead links">Golf can be an expensive sport to play. Let us help with that!</p>
+		<p class="lead links">Everything on Golf Vouchers is brand new and available at a reduced price. We even have a sale
 			section for further reductions.
 		</p>
 	</div>
 </div>
 {% if user.is_staff %}
 <div class="container justify-content-center">
-	<div class="card text-white">
+	<div class="card">
 		<p class="lead">Admin Panel</p>
 		<a class="btn " data-toggle="tooltip" data-placement="top" title="View and purchase"
 			href="{% url 'new_post' %}">New Product
@@ -30,15 +30,15 @@
 	<div class="row">
 		{% for post in posts %}
 		<div class="card-deck col-xs-12 col-md-4">
-			<div class="card text-white">
+			<div class="card">
 				<img class="card-img-top img-fluid default-image" src="{{ MEDIA_URL }}{{ post.image }}" alt="Product image">
 				<div class="card-header">
 					<div class="card-title">
-						<a class="lead" data-toggle="tooltip" data-placement="top" title="View and purchase"
+						<a class="lead links" data-toggle="tooltip" data-placement="top" title="View and purchase"
 							href="{% url 'post_detail' post.id %}">{{post.title}}</a>
 					</div>
 					<div class="row review-text lead">
-						<p class="lead">£{{ post.price }}</p>
+						<p class="lead links">£{{ post.price }}</p>
 					</div>
 				</div>
 			</div>

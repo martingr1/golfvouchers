@@ -56,7 +56,7 @@ html { position: relative; min-height: 100%; }
 .card{
 opacity: 0.9;
 margin: 5%;
-background-color: rgba(0,0,0,0.5) !important;
+background-color:#F8F8F8) !important;
 border-color: white;
 
 }
@@ -174,7 +174,7 @@ border-color: rgb(121, 120, 120)
 }
 
 .links{
-color: whitesmoke;
+color: #383838;
 }
 
 /* --- Images and Icons --- */
@@ -208,4 +208,19 @@ color: whitesmoke;
 
     height: 25vh;
     width: 25vh;
+}
+
+.cart-img {
+
+    height: 10vh;
+    width: 10vh;
+}
+
+.total-price {
+  width: 83px;
+  padding-top: 27px;
+  text-align: center;
+  font-size: 16px;
+  color: #43484D;
+  font-weight: 300;
 }

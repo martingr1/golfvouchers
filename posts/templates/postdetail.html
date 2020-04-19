@@ -1,32 +1,31 @@
 {% extends 'base.html' %}
-{% block content %}    
-
- <div class="row">
- <a href="{% url 'get_posts' %}" class="btn btn-default">Back</a>
-        <div class="col-xs-12 col-md-6">
-            {% if post.image %}
-                <img class="img-post" src="{{ MEDIA_URL }}{{ post.image }}">
+{% block content %}
+<div class="container">
+	<a href="{% url 'get_posts' %}">
+		< Back to results</a> 
+        <div class="col-xs-12">
+			{% if post.image %}
+			<img class="img-post" src="{{ MEDIA_URL }}{{ post.image }}">
             {% endif %}
-            <h3>{{ post.title }}</h3>
-            <div class="row">
-                <div class="col-xs-9">
-                    <p>{{ post.content }}</p>
-                    <p><span class="boldtext">Views:</span> {{post.views}}</p>
-                    {% if user.is_staff %}
-                    <a href="{% url 'edit_post' post.id %}" class="btn btn-default">Edit Product</a>
-                    {% endif %}
-                    <hr>
-                </div>
-                <form method="post" action="{% url 'add_to_cart' post.id %}">
-                    {% csrf_token %}
-                    <div class="input-group">
-                        <input name="quantity" value="0" type="number" min="0" max="99" class="form-control">
-                        <span class="input-group-btn">
-                            <button class="btn btn-success" type="submit">Purchase</button>
-                        </span>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+		</div>
+			<div class="col-xs-12">
+				<h3>{{ post.title }}</h3>
+				<p>Price: £{{post.price }}</p>
+				<p>{{ post.content }}</p>
+			</div>
+			<p><span class="boldtext">Views:</span> {{post.views}}</p>
+			{% if user.is_staff %}
+			<a href="{% url 'edit_post' post.id %}" class="btn btn-default">Edit Product</a>
+			{% endif %}
+			<div class="col-xs-6">
+				<form method="post" action="{% url 'add_to_cart' post.id %}">
+					{% csrf_token %}
+					<div class="input-group col-xs-6">
+						<input name="quantity" value="0" type="number" min="0" max="99">
+						<button class="btn btn-success" type="submit">Add to cart</button>
+					</div>
+				</form>
+			</div>
+</div>
+
 {% endblock %}

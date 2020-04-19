@@ -1,7 +1,19 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 {% block content %}
+
+
+<div class="jumbotron main-image">
+	<div class="card main-card">
+		<h1 class="display-4">Golf Vouchers</h1>
+		<p class="lead">Golf can be an expensive sport to play. Let us help with that!</p>
+		<p class="lead">Everything on Golf Vouchers is brand new and available at a reduced price. We even have a sale
+			section for further reductions.
+		</p>
+	</div>
+</div>
 {% if user.is_staff %}
-<div class="container">
+<div class="container justify-content-center">
 	<div class="card text-white">
 		<p class="lead">Admin Panel</p>
 		<a class="btn " data-toggle="tooltip" data-placement="top" title="View and purchase"
@@ -9,12 +21,12 @@
 		</a>
 	</div>
 	{% endif %}
-    <div class="container">
-<form method="GET">
-{{post_filter.form}}
-<button class="btn btn-primary" type="submit">Search</button>
-</form>
-</div>
+	<div class="card text-white">
+		<form method="GET">
+			{{post_filter.form}}
+			<button class="btn btn-primary" type="submit">Search</button>
+		</form>
+	</div>
 	<div class="row">
 		{% for post in posts %}
 		<div class="card-deck col-xs-12 col-md-4">
@@ -31,8 +43,10 @@
 				</div>
 			</div>
 		</div>
-		{% endfor %}
 
+		{% endfor %}
+	</div>
+	<div class="row justify-content-center">
 		<div class="pagination">
 			<span class="step-links">
         {% if posts.has_previous %}
@@ -41,7 +55,7 @@
         {% endif %}
 
         <span class="current">
-            Page {{ posts.number }} of {{ posts.paginator.num_pages }}.
+            Page {{ posts.number }} of {{ posts.paginator.num_pages }}
         </span>
 
 			{% if posts.has_next %}
@@ -51,6 +65,7 @@
 			</span>
 		</div>
 	</div>
+</div>
 
 
-	{% endblock %}
+{% endblock %}

@@ -44,13 +44,13 @@ INSTALLED_APPS = [
     'django_forms_bootstrap',
     'bootstrap_datepicker_plus',
     'django_filters',
+    'crispy_forms',
     'posts',
     'accounts',
     'cart',
     'search',
     'checkout',
     'storages',
-    
 ]
 
 MIDDLEWARE = [
@@ -154,6 +154,8 @@ USE_TZ = True
 BOOTSTRAP4 = {
     'include_jquery': True,
 }
+
+CRIPSY_TEMPLATE_PACK = 'bootstrap4'
 
 AWS_S3_OBJECT_PARAMETERS = {
 

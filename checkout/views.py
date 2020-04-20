@@ -12,8 +12,6 @@ import stripe
 
 stripe.api_key = settings.STRIPE_SECRET
 
-
-
 @login_required
 def checkout(request):
     if request.method == 'POST':
@@ -24,30 +22,31 @@ def checkout(request):
             order = order_form.save(commit=False)
             order.date = timezone.now()
             order.save()
+
             cart = request.session.get('cart', {})
             total = 0
+            
             for id, quantity in cart.items():
-                  
                 product = get_object_or_404(Post, pk=id)
                 total += quantity * product.price
                 order_line_item = OrderLineItem(
                     order= order,
                     post= product, 
                     quantity= quantity)
-            order_line_item.save()
+                order_line_item.save()
             
-            try:
-                customer = stripe.Charge.create(
-                    amount=int(total * 100),
-                    currency="GBP",
-                    description=request.user.email,
-                    card=payment_form.cleaned_data['stripe_id'],
-                )
-            except stripe.error.CardError:
-                messages.error(request, "Your card has been declined")
+                try:
+                    customer = stripe.Charge.create(
+                        amount=int(total * 100),
+                        currency="GBP",
+                        description=request.user.email,
+                        card=payment_form.cleaned_data['stripe_id'],
+                        )
+                except stripe.error.CardError:
+                    messages.error(request, "Your card has been declined")
             
-            if customer.paid:
-                messages.error(request, "Transaction complete")
+                if customer.paid:
+                    messages.error(request, "Transaction complete")
                 product.initial_quantity = product.initial_quantity - quantity
                 product.save()
                 request.session['cart'] = {}

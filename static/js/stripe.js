@@ -1,4 +1,3 @@
-
 $(function() {
     $("#payment-form").submit(function() {
         var form = this;

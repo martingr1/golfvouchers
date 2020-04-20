@@ -13,7 +13,7 @@ def get_posts(request):
     post_filter = PostFilter(request.GET, queryset=posts_list)
     posts_list = post_filter.qs
 
-    p = Paginator(posts_list, 12)
+    p = Paginator(posts_list, 1)
     page = request.GET.get('page')
     try:
         posts = p.page(page)

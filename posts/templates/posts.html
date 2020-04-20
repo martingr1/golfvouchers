@@ -7,7 +7,8 @@
 	<div class="card main-card">
 		<h1 class="display-4 links">Golf Vouchers</h1>
 		<p class="lead links">Golf can be an expensive sport to play. Let us help with that!</p>
-		<p class="lead links">Everything on Golf Vouchers is brand new and available at a reduced price. We even have a sale
+		<p class="lead links">Everything on Golf Vouchers is brand new and available at a reduced price. We even have a
+			sale
 			section for further reductions.
 		</p>
 	</div>
@@ -47,25 +48,29 @@
 		{% endfor %}
 	</div>
 	<div class="row justify-content-center">
-		<div class="pagination">
-			<span class="step-links">
-        {% if posts.has_previous %}
-            <a href="?page=1">&laquo; first</a>
-            <a href="?page={{ posts.previous_page_number }}">previous</a>
-        {% endif %}
-
-        <span class="current">
-            Page {{ posts.number }} of {{ posts.paginator.num_pages }}
-        </span>
-
-			{% if posts.has_next %}
-			<a href="?page={{ posts.next_page_number }}">next</a>
-			<a href="?page={{ posts.paginator.num_pages }}">last &raquo;</a>
-			{% endif %}
-			</span>
-		</div>
+		<nav aria-label="Pagination">
+			<ul class="pagination">
+				{% if posts.has_previous %}
+				<li class="page-item"><a class="page-link" href="?page=1">First</a></li>
+				<li class="page-item"><a class="page-link" href="?page={{ posts.previous_page_number }}">Previous</a>
+				</li>
+                {% else %}
+                <li class="page-item disabled"><a class="page-link" href="?page=1">First</a></li>
+                <li class="page-item disabled"><a class="page-link" href="?page=1">Previous</a></li>
+				{% endif %}
+				{% if posts.has_next %}
+				<li class="page-item"><a class="page-link" href="?page={{ posts.next_page_number }}">Next</a></li>
+				<li class="page-item"><a class="page-link" href="?page={{ posts.next_page_number }}">Last</a></li>
+                {% else %}
+                <li class="page-item disabled"><a class="page-link" href="?page=1">Next</a></li>
+                <li class="page-item disabled"><a class="page-link" href="?page=1">Last</a></li>
+				{% endif %}
+			</ul>
+            
+		</nav>
+        
 	</div>
-</div>
-
-
-{% endblock %}
+    <div class="row justify-content-center">
+    <p class="lead"> Page {{ posts.number }} of {{ posts.paginator.num_pages }}</p>
+    </div>
+	{% endblock %}

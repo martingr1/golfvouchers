@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from posts.models import Post
+from posts.filters import PostFilter
 
 
 def do_search(request):
@@ -10,8 +11,10 @@ def do_search(request):
     posts_list = Post.objects.all()
     query = request.GET.get('q')
 
-    if query:
+    post_filter = PostFilter(request.GET, queryset=posts_list)
+    posts_list = post_filter.qs
 
+    if query:
         posts_list = Post.objects.filter(
             Q(title__icontains=query) | Q(content__icontains=query)
         ).distinct()
@@ -29,6 +32,6 @@ def do_search(request):
         posts = p.page(p.num_pages)
 
     context = {
-            'posts': posts}
+            'posts': posts, 'post_filter': post_filter, }
 
     return render(request, "posts.html", context)

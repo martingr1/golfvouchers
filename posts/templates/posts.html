@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load crispy_forms_tags %}
+{% load bootstrap_tags %}
 {% block content %}
 
 
@@ -22,11 +22,13 @@
 		</a>
 	</div>
 	{% endif %}
-	<div class="card text-white">
-		<form method="GET">
-			{{post_filter.form}}
-			<button class="btn btn-primary" type="submit">Search</button>
-		</form>
+	<div class="row justify-content-center">
+		<div class="col-xs-12 col-md-6">
+			<form method="GET" enctype="multipart/form-data">
+				{{ post_filter.form | as_bootstrap_inline}}
+				<button class="btn btn-primary" type="submit">Search</button>
+			</form>
+		</div>
 	</div>
 	<div class="row">
 		{% for post in posts %}
@@ -43,6 +45,7 @@
 					</div>
 				</div>
 			</div>
+
 		</div>
 
 		{% endfor %}
@@ -54,23 +57,23 @@
 				<li class="page-item"><a class="page-link" href="?page=1">First</a></li>
 				<li class="page-item"><a class="page-link" href="?page={{ posts.previous_page_number }}">Previous</a>
 				</li>
-                {% else %}
-                <li class="page-item disabled"><a class="page-link" href="?page=1">First</a></li>
-                <li class="page-item disabled"><a class="page-link" href="?page=1">Previous</a></li>
+				{% else %}
+				<li class="page-item disabled"><a class="page-link" href="?page=1">First</a></li>
+				<li class="page-item disabled"><a class="page-link" href="?page=1">Previous</a></li>
 				{% endif %}
 				{% if posts.has_next %}
 				<li class="page-item"><a class="page-link" href="?page={{ posts.next_page_number }}">Next</a></li>
 				<li class="page-item"><a class="page-link" href="?page={{ posts.next_page_number }}">Last</a></li>
-                {% else %}
-                <li class="page-item disabled"><a class="page-link" href="?page=1">Next</a></li>
-                <li class="page-item disabled"><a class="page-link" href="?page=1">Last</a></li>
+				{% else %}
+				<li class="page-item disabled"><a class="page-link" href="?page=1">Next</a></li>
+				<li class="page-item disabled"><a class="page-link" href="?page=1">Last</a></li>
 				{% endif %}
 			</ul>
-            
+
 		</nav>
-        
+
 	</div>
-    <div class="row justify-content-center">
-    <p class="lead"> Page {{ posts.number }} of {{ posts.paginator.num_pages }}</p>
-    </div>
+	<div class="row justify-content-center">
+		<p class="lead"> Page {{ posts.number }} of {{ posts.paginator.num_pages }}</p>
+	</div>
 	{% endblock %}

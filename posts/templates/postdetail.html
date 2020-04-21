@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="container">
-	<a href="{% url 'get_posts' %}">
-		< Back to results</a> 
+	<a href="{% url 'get_posts' %}"><p class="mt-1 lead">< Back</p>
+		</a> 
         <div class="col-xs-12">
 			{% if post.image %}
 			<img class="img-post" src="{{ MEDIA_URL }}{{ post.image }}">
@@ -10,10 +10,10 @@
 		</div>
 			<div class="col-xs-12">
 				<h3>{{ post.title }}</h3>
-				<p>Price: £{{post.price }}</p>
-				<p>{{ post.content }}</p>
+				<p class="mt-1 lead">Price: £{{post.price }}</p>
+				<p class="mt-1 lead">{{ post.content }}</p>
 			</div>
-			<p><span class="boldtext">Views:</span> {{post.views}}</p>
+			<p class="mt-1 lead">Views: {{post.views}}</p>
 			{% if user.is_staff %}
 			<a href="{% url 'edit_post' post.id %}" class="btn btn-default">Edit Product</a>
 			{% endif %}

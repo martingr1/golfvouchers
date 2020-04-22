@@ -224,11 +224,10 @@ color: #383838;
     width: 10vh;
 }
 
-.total-price {
-  width: 83px;
-  padding-top: 27px;
-  text-align: center;
-  font-size: 16px;
-  color: #43484D;
-  font-weight: 300;
+.cart-icon {
+
+    height: 15px;
+    width: 15px;
+    color: white;
+
 }

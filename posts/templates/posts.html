@@ -20,7 +20,7 @@
 				href="{% url 'new_post' %}">New Product
 			</a>
 	{% endif %}
-	<div class="row justify-content-center">
+	<div class="row no-gutters justify-content-center">
 		<div class="col-xs-12 col-md-6">
 			<p class="lead">Filter your results</p>
 			<form method="GET" enctype="multipart/form-data">
@@ -36,7 +36,7 @@
 		{% for post in posts %}
 		<div class="card-deck col-xs-12 col-md-6 col-lg-4">
 			<div class="card">
-				<img class="card-img-top img-fluid default-image" src="{{ MEDIA_URL }}{{ post.image }}" alt="Product image">
+				<img class="card-img-top img-fluid img-post" src="{{ MEDIA_URL }}{{ post.image }}" alt="Product image">
 				<div class="card-header">
 					<div class="card-title">
 						<a class="lead links" data-toggle="tooltip" data-placement="top" title="View and purchase"

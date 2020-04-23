@@ -8,6 +8,7 @@ from django.conf import settings
 from posts.models import Post
 from django.utils import timezone
 from django.template.loader import get_template
+from django.template import Context
 import stripe
 
 stripe.api_key = settings.STRIPE_SECRET
@@ -22,31 +23,39 @@ def checkout(request):
             order = order_form.save(commit=False)
             order.date = timezone.now()
             order.save()
-
+            print(request.session['cart'])
             cart = request.session.get('cart', {})
             total = 0
-            
+            print("cart:", cart.items())
+    
             for id, quantity in cart.items():
                 product = get_object_or_404(Post, pk=id)
+                print("cart:", cart.items())
+            
+                print("id:", id)
+                print("quantity:", quantity)
+        
+                print("Product:", product)
                 total += quantity * product.price
                 order_line_item = OrderLineItem(
-                    order= order,
-                    post= product, 
-                    quantity= quantity)
+                    order=order,
+                    post=product, 
+                    quantity=quantity)
                 order_line_item.save()
+                print(order_line_item)
             
-                try:
-                    customer = stripe.Charge.create(
-                        amount=int(total * 100),
-                        currency="GBP",
-                        description=request.user.email,
-                        card=payment_form.cleaned_data['stripe_id'],
+            try:
+                customer = stripe.Charge.create(
+                    amount=int(total * 100),
+                    currency="GBP",
+                    description=request.user.email,
+                    card=payment_form.cleaned_data['stripe_id'],
                         )
-                except stripe.error.CardError:
-                    messages.error(request, "Your card has been declined")
+            except stripe.error.CardError:
+                messages.error(request, "Your card has been declined")
             
-                if customer.paid:
-                    messages.error(request, "Transaction complete")
+            if customer.paid:
+                messages.error(request, "Transaction complete")
                 product.initial_quantity = product.initial_quantity - quantity
                 product.save()
                 request.session['cart'] = {}
@@ -57,9 +66,11 @@ def checkout(request):
                     checkout_message = f.read()
                 message = EmailMultiAlternatives(subject=subject, body=checkout_message, from_email=from_email,
                     to=to_email)
-                html_template = get_template("checkout_email.html").render()
-                message.attach_alternative(html_template, "text/html")
-                message.send()
+                context = {"product": order_line_item}
+                html_template = get_template("checkout_email.html").render(context)
+                #message.attach_alternative(html_template, "text/html")
+                #message.send()
+                print(html_template)
                 return redirect(reverse('get_posts'))
 
             else:

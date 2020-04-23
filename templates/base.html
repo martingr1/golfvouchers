@@ -22,12 +22,10 @@
 			background-color: #ffffff;
 		}
 	</style>
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+	<nav class="navbar navbar-expand-sm navbar-light bg-light sticky-top">
 		<a class="navbar-brand" href="{% url 'get_posts' %}">GolfVouchers</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span></button>
-		{% if user.is_authenticated %}{% if user.is_staff %}
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+        {% if user.is_authenticated %}{% if user.is_staff %}
 			<div class="login-nav d-flex align-items-center justify-content-center">
 				<i class="material-icons login-icon">account_box</i>Admin
 				{% else %}
@@ -35,15 +33,11 @@
 				{% endif %}
 				{% endif %}
 			</div>
-			<ul class="navbar-nav mr-1">
+			<ul class=" navbar-nav mr-1">
 				{% if user.is_authenticated %}
-				<li class="float-right mt-3 mr-2 ml-2 nav-item "><a href="{% url 'logout' %}">
+				<li class="mt-3 mr-2 ml-2 nav-item "><a href="{% url 'logout' %}">
 						<p class="lead">Sign Out</p>
 					</a></li>
-				<li class="mt-3 mr-2 ml-2 nav-item "><a href="{% url 'profile' %}">
-						<p class="lead">Account
-					</a></li>
-
 				{% else %}
 				<li class="mt-3 nav-item"><a href="{% url 'login' %}">
 						<p class="lead">Hello! Sign In
@@ -61,6 +55,7 @@
 		</form>
 
 	</nav>
+
 	{% if messages %}
 	{% for message in messages %}
 	<div class="container">

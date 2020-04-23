@@ -92,7 +92,7 @@ border-color: white;
 color: white;
 background-color: #2F7320;
 border-color: #2F7320;
-width: 125px;
+width: 150px;
 height: 40px;
 padding: 5px;
 margin: 5px;
@@ -204,11 +204,11 @@ color: #383838;
 
 .login-nav {
     padding-right: 2px;
-    color: whitesmoke;
+    color: #383838;
     font-size: 20px;
     border-width: 1px;
     border-style: solid;
-    border-color: white;
+    color: #383838;
     margin: 1%;
 }
 

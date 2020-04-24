@@ -1,3 +1,6 @@
+{% autoescape off %}
+{% load static from staticfiles %}
+
 <!DOCTYPE html>
 <html>
 
@@ -12,9 +15,9 @@
 
 	<p>Payment has been successful. A summary of your order is below:
 	</p>
-   
-		{{product}}
-    
+   {% for p in products%}
+   {{p.quantity}} x {{p.product}} @ £{{p.price}}
+   {% endfor %}
 	<p>Best,</p>
 
 	<p>The Golf Vouchers Team.</p>
@@ -22,3 +25,4 @@
 </body>
 
 </html>
+{% endautoescape %}

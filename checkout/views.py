@@ -7,6 +7,7 @@ from .models import OrderLineItem
 from django.conf import settings
 from posts.models import Post
 from django.utils import timezone
+from django.contrib.auth.models import User
 from django.template.loader import get_template
 from django.template import Context
 import stripe
@@ -23,26 +24,29 @@ def checkout(request):
             order = order_form.save(commit=False)
             order.date = timezone.now()
             order.save()
-            print(request.session['cart'])
             cart = request.session.get('cart', {})
             total = 0
-            print("cart:", cart.items())
+            products = []
     
             for id, quantity in cart.items():
                 product = get_object_or_404(Post, pk=id)
-                print("cart:", cart.items())
-            
-                print("id:", id)
-                print("quantity:", quantity)
-        
-                print("Product:", product)
                 total += quantity * product.price
                 order_line_item = OrderLineItem(
                     order=order,
                     post=product, 
                     quantity=quantity)
-                order_line_item.save()
-                print(order_line_item)
+
+                order_line_item.save() 
+
+                for p in cart:
+
+                    products.append({
+
+                    "product": product.title,
+                    "quantity": quantity,
+                    "price": product.price,
+      
+                })
             
             try:
                 customer = stripe.Charge.create(
@@ -57,19 +61,22 @@ def checkout(request):
             if customer.paid:
                 messages.error(request, "Transaction complete")
                 product.initial_quantity = product.initial_quantity - quantity
-                product.save()
-                request.session['cart'] = {}
+                product.save()     
+                user = request.user.username
+                context = {"user": user,
+                    "products": products}
+                print(products)
                 subject = "Thank you for your order"
                 from_email = settings.EMAIL_HOST_USER
                 to_email = [request.user.email]
                 with open(settings.BASE_DIR + "/templates/account/email/checkout.txt") as f:
                     checkout_message = f.read()
                 message = EmailMultiAlternatives(subject=subject, body=checkout_message, from_email=from_email,
-                    to=to_email)
-                context = {"product": order_line_item}
+                    to=to_email)  
                 html_template = get_template("checkout_email.html").render(context)
-                #message.attach_alternative(html_template, "text/html")
-                #message.send()
+                message.attach_alternative(html_template, "text/html")
+                message.send()
+                cart = request.session['cart'] = {}
                 print(html_template)
                 return redirect(reverse('get_posts'))
 

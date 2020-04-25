@@ -15,9 +15,10 @@
 
 	<p>Payment has been successful. A summary of your order is below:
 	</p>
-   {% for p in products%}
+   {% for p in products %}
    {{p.quantity}} x {{p.product}} @ £{{p.price}}
    {% endfor %}
+   {{total}}
 	<p>Best,</p>
 
 	<p>The Golf Vouchers Team.</p>

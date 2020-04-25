@@ -36,18 +36,18 @@ def checkout(request):
                     post=product, 
                     quantity=quantity)
 
-                order_line_item.save() 
-
+                order_line_item.save()
+                
                 for p in cart:
 
                     products.append({
 
-                    "product": product.title,
-                    "quantity": quantity,
-                    "price": product.price,
+                "product": product.title,
+                "quantity": quantity,
+                "price": product.price,
       
-                })
-            
+                }) 
+
             try:
                 customer = stripe.Charge.create(
                     amount=int(total * 100),
@@ -59,12 +59,15 @@ def checkout(request):
                 messages.error(request, "Your card has been declined")
             
             if customer.paid:
+
+                
                 messages.error(request, "Transaction complete")
                 product.initial_quantity = product.initial_quantity - quantity
                 product.save()     
                 user = request.user.username
+                total = total
                 context = {"user": user,
-                    "products": products}
+                    "products": products, "total": total}
                 print(products)
                 subject = "Thank you for your order"
                 from_email = settings.EMAIL_HOST_USER
@@ -74,8 +77,8 @@ def checkout(request):
                 message = EmailMultiAlternatives(subject=subject, body=checkout_message, from_email=from_email,
                     to=to_email)  
                 html_template = get_template("checkout_email.html").render(context)
-                message.attach_alternative(html_template, "text/html")
-                message.send()
+                #message.attach_alternative(html_template, "text/html")
+                #message.send()
                 cart = request.session['cart'] = {}
                 print(html_template)
                 return redirect(reverse('get_posts'))

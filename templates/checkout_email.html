@@ -15,19 +15,37 @@
 
 	<p>Payment has been successful. A summary of your order is below:
 	</p>
-    Order Number:   {{products.id}}
-    Order Date: {{products.date}}
-    Name:       {{products.first_name}} {{products.last_name}}
-    Address:    {{products.street_address_1}} {{products.street_address_2}}
-    Town/City:  {{products.town_or_city}}
-    County:     {{products.county}}
-    Postcode:   {{products.postcode}}
-    Order Total:    £{{total}}
 
+	<table class="table">
+		<thead>
+			<tr>
+				<th></th>
+				<th>Order Number</th>
+				<th>Order Date</th>
+				<th>Name</th>
+				<th>Address</th>
+				<th>Town/City</th>
+				<th>County</th>
+				<th>Postcode</th>
+				<th>Order Total</th>
+			</tr>
+		</thead>
+        <tbody>
+        <tr>
+        <th>{{products.id}}</th>
+        <th>{{products.date}}</th>
+        <th>{{products.first_name}} {{products.last_name}}</th>
+        <th>{{products.street_address_1}} {{products.street_address_2}}</th>
+        <th>{{products.town_or_city}}</th>
+        <th>{{products.county}}</th>
+        <th>{{products.postcode}}</th>
+        <th>£{{total}}</th>
+        </tr>
+        </tbody>
 
-	<p>Best,</p>
+		<p>Best,</p>
 
-	<p>The Golf Vouchers Team.</p>
+		<p>The Golf Vouchers Team.</p>
 
 </body>
 

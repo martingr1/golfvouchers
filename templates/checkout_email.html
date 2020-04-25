@@ -15,10 +15,16 @@
 
 	<p>Payment has been successful. A summary of your order is below:
 	</p>
-   {% for p in products %}
-   {{p.quantity}} x {{p.product}} @ £{{p.price}}
-   {% endfor %}
-   {{total}}
+    Order Number:   {{products.id}}
+    Order Date: {{products.date}}
+    Name:       {{products.first_name}} {{products.last_name}}
+    Address:    {{products.street_address_1}} {{products.street_address_2}}
+    Town/City:  {{products.town_or_city}}
+    County:     {{products.county}}
+    Postcode:   {{products.postcode}}
+    Order Total:    £{{total}}
+
+
 	<p>Best,</p>
 
 	<p>The Golf Vouchers Team.</p>

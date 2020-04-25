@@ -59,8 +59,6 @@ def checkout(request):
                 messages.error(request, "Your card has been declined")
             
             if customer.paid:
-
-                
                 messages.error(request, "Transaction complete")
                 product.initial_quantity = product.initial_quantity - quantity
                 product.save()     

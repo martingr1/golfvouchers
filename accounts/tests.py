@@ -25,7 +25,7 @@ class TestLoginForms(TestCase):
 
         form = UserRegistrationForm({
             'username': 'admin',
-            'email': 'admin@example.com',
+            'email': 'test@test.com',
             'password1': 'password1',
             'password2': 'password1'
         })

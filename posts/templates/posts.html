@@ -36,9 +36,11 @@
 	</div>
 	<div class="row">
 		{% for post in posts %}
-		<div class="card-deck col-xs-12 col-md-6 col-lg-4">
-			<div class="card">
-				<img class="card-img-top img-fluid img-post" src="{{ MEDIA_URL }}{{ post.image }}" alt="Product image">
+		<div  class="card-deck col-xs-12 col-md-6 col-lg-4">
+			<div id="posts" class="card">
+                <a href="{% url 'post_detail' post.id %}">
+				<img class="card-img-top img-fluid img-post" src="{{ MEDIA_URL }}{{ post.image }}" alt="Product image" >
+                </a>
 				<div class="card-header">
 					<div class="card-title">
 						<a class="lead links" data-toggle="tooltip" data-placement="top" title="View and purchase"

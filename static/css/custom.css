@@ -56,8 +56,8 @@ html { position: relative; min-height: 100%; }
 .card{
 opacity: 0.9;
 margin: 5%;
-background-color:#F8F8F8) !important;
-border-color: white;
+background-color:#F8F8F8; !important;
+border-color: #F8F8F8;
 
 }
 
@@ -107,6 +107,12 @@ margin: 5px;
 }
 
 .btn:hover{
+color: #2F7320;
+background-color: white;
+border-color:#2F7320;
+}
+
+.card:hover{
 color: #2F7320;
 background-color: white;
 border-color:#2F7320;

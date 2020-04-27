@@ -9,43 +9,31 @@
 
 <body>
 	<h1>Thank you for your order!</h1>
-	<p>Dear {{ user }},</p>
+	<p class="lead">Dear {{ user }},</p>
 
-	<p>Thank you for your order.</p>
+	<p class="lead">Thank you for your order. Your order number is {{orders.id}}</p>
 
-	<p>Payment has been successful. A summary of your order is below:
+	<p class="lead">Payment has been successful. A summary of your order is below:
 	</p>
 
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Order Number</th>
-				<th>Order Date</th>
-				<th>Name</th>
-				<th>Address</th>
-				<th>Town/City</th>
-				<th>County</th>
-				<th>Postcode</th>
-				<th>Order Total</th>
-			</tr>
-		</thead>
-        <tbody>
-        <tr>
-        <th>{{products.id}}</th>
-        <th>{{products.date}}</th>
-        <th>{{products.first_name}} {{products.last_name}}</th>
-        <th>{{products.street_address_1}} {{products.street_address_2}}</th>
-        <th>{{products.town_or_city}}</th>
-        <th>{{products.county}}</th>
-        <th>{{products.postcode}}</th>
-        <th>£{{total}}</th>
-        </tr>
-        </tbody>
-	</table>
+    {% for product in products %}
 
-		<p>Best,</p>
+    <p class="lead">{{product.quantity}} x {{product.title}} @ £{{product.price}}</p>
 
-		<p>The Golf Vouchers Team.</p>
+    {% endfor %}
+
+    <p class="lead">Sub Total: £{{total}}</p>
+
+    <p class="lead">Delivery Address:</p>
+    
+    <p class="lead">{{orders.street_address_1}} {{orders.street_address_2}}</p>
+    <p class="lead">{{orders.postcode}}</p>
+
+
+
+	<p class="lead">Best,</p>
+
+	<p class="lead">The Golf Vouchers Team.</p>
 
 </body>
 

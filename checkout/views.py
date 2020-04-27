@@ -26,7 +26,7 @@ def checkout(request):
             order.save()
             cart = request.session.get('cart', {})
             total = 0
-            #products = []
+            products = []
     
             for id, quantity in cart.items():
                 product = get_object_or_404(Post, pk=id)
@@ -37,16 +37,16 @@ def checkout(request):
                     quantity=quantity)
 
                 order_line_item.save()
-                
-                #for p in cart:
 
-                #    products.append({
+                products.append({
 
-               # "product": product.title,
-                #"quantity": quantity,
-                #"price": product.price,
+                "title": product.title,
+                "quantity": quantity,
+                "price": product.price,
       
-                #}) 
+                })
+
+            print(products) 
 
             try:
                 customer = stripe.Charge.create(
@@ -65,7 +65,7 @@ def checkout(request):
                 user = request.user.username
                 total = total
                 context = {"user": user,
-                    "products": order_line_item.order, "orders": order_line_item.post, 
+                    "products": products, "orders": order_line_item.order, 
                     "total": total}
                 subject = "Thank you for your order"
                 from_email = settings.EMAIL_HOST_USER

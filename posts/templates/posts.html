@@ -19,12 +19,14 @@
 	<a class="btn " data-toggle="tooltip" data-placement="top" title="Create new product"
 		href="{% url 'new_post' %}">New Product
 	</a>
-	{% endif %}
+</div>
+{% endif %}
+<div class="container">
 	<div class="row no-gutters justify-content-center">
-		<div class="col-xs-12 col-md-6">
+		<div class="col-xs-12">
 			<p class="lead">Filter your results</p>
-			<button id= "get_filters" class = "btn" >Show Filters</button>
-			<form id ="view_filters" method="GET" enctype="multipart/form-data">
+			<button id= "get_filters" class = "btn" >Toggle Filters</button>
+			<form id="view_filters" method="GET" enctype="multipart/form-data">
 				{{ post_filter.form | as_bootstrap_inline}}
 				<button class="btn btn-primary" type="submit">Search</button>
 				<a class="btn " data-toggle="tooltip" data-placement="top" title="Refresh filters"
@@ -34,22 +36,22 @@
 
 		</div>
 	</div>
-	<div class="row">
+	<div class="row no-gutters justify-content-center ">
 		{% for post in posts %}
-		<div  class="card-deck col-xs-12 col-md-6 col-lg-4">
-			<div id="posts" class="card">
-                <a href="{% url 'post_detail' post.id %}">
-				<img class="card-img-top img-fluid img-post" src="{{ MEDIA_URL }}{{ post.image }}" alt="Product image" >
+		<div class="card-deck col-xs-12 col-md-6 col-lg-4">
+			<div class="card post-card ">
+				<a href="{% url 'post_detail' post.id %}">
+					<img class="card-img-top img-post align-items-center" src="{{ MEDIA_URL }}{{ post.image }}" alt="Product image" >
                 </a>
-				<div class="card-header">
-					<div class="card-title">
-						<a class="lead links" data-toggle="tooltip" data-placement="top" title="View and purchase"
-							href="{% url 'post_detail' post.id %}">{{post.title}}</a>
+					<div class="card-header">
+						<div class="card-title">
+							<a class="lead links" data-toggle="tooltip" data-placement="top" title="View and purchase"
+								href="{% url 'post_detail' post.id %}">{{post.title}}</a>
+						</div>
+						<div class="row review-text lead">
+							<p class="lead links">£{{ post.price }}</p>
+						</div>
 					</div>
-					<div class="row review-text lead">
-						<p class="lead links">£{{ post.price }}</p>
-					</div>
-				</div>
 			</div>
 
 		</div>
@@ -82,4 +84,5 @@
 	<div class="row justify-content-center">
 		<p class="lead"> Page {{ posts.number }} of {{ posts.paginator.num_pages }}</p>
 	</div>
-	{% endblock %}
+</div>
+{% endblock %}

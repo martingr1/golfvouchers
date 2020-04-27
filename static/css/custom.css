@@ -56,9 +56,8 @@ html { position: relative; min-height: 100%; }
 .card{
 opacity: 0.9;
 margin: 5%;
-background-color:#F8F8F8; !important;
+background-color: white; !important;
 border-color: #F8F8F8;
-
 }
 
 .card-alt{
@@ -98,21 +97,13 @@ padding: 5px;
 margin: 5px;
 }
 
-.rev-btn {
-    height: 42px;
-    width: 50px;
-    padding: 10px%;
-    margin-bottom: 5px;
-    margin-left: 5px;
-}
-
 .btn:hover{
 color: #2F7320;
 background-color: white;
 border-color:#2F7320;
 }
 
-.card:hover{
+.post-card:hover{
 color: #2F7320;
 background-color: white;
 border-color:#2F7320;
@@ -128,15 +119,6 @@ border-color:#2F7320;
 .btn-icon {
     padding-left: 5%;
     margin: 0 auto;
-}
-
-.btn-cancel {
-    color: black;
-    background-color:rgb(121, 120, 120);
-    border-color: rgb(121, 120, 120);
-    width: 150px;
-    height: 40px;
-    padding: 5px;
 }
 
 .btn-cancel:hover{
@@ -191,6 +173,11 @@ border-color: rgb(121, 120, 120)
 color: #383838;
 }
 
+.links:hover {
+
+color: #2F7320;
+}
+
 /* --- Images and Icons --- */
 
 .affiliate-img {
@@ -214,7 +201,6 @@ color: #383838;
     font-size: 20px;
     border-width: 1px;
     border-style: solid;
-    color: #383838;
     margin: 1%;
 }
 
@@ -235,5 +221,9 @@ color: #383838;
     height: 15px;
     width: 15px;
     color: white;
+}
 
+.navbar-brand {
+
+    color: white;
 }

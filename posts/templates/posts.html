@@ -28,7 +28,7 @@
 			<button id= "get_filters" class = "btn" >Toggle Filters</button>
 			<form id="view_filters" method="GET" enctype="multipart/form-data">
 				{{ post_filter.form | as_bootstrap_inline}}
-				<button class="btn btn-primary" type="submit">Search</button>
+				<button class="btn btn-primary" type="submit">Filter</button>
 				<a class="btn " data-toggle="tooltip" data-placement="top" title="Refresh filters"
 					href="{% url 'get_posts' %}">Refresh
 				</a>

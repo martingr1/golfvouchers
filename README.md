@@ -1,6 +1,8 @@
 
 [![Build Status](https://travis-ci.org/martingr1/golfvouchers.svg?branch=master)](https://travis-ci.org/martingr1/golfvouchers)
 
+![Banner](/static/media/img/gv_banner.jpg "Banner")
+
 GolfVouchers
 ====== 
 
@@ -23,10 +25,10 @@ You will then be able to log in to the site and make purchases.
 
 Please use the following test card details for purchases:
 
-Card number: 4242424242424242
-Expiry Month: 4
-Expiry Year: 2022 (Any future date will work)
-CVV: 111 (Any 3 digit number will work)
+- Card number: 4242424242424242
+- Expiry Month: 4
+- Expiry Year: 2022 (Any future date will work)
+- CVV: 111 (Any 3 digit number will work)
 
 Code is stored in my github repository [here](https://github.com/martingr1/golfvouchers) .
 

@@ -17,7 +17,9 @@ To run the live app hosted on Heroku, please go [here](https://golfvouchers.hero
 
 This project was written in Gitpod IDE, using Python, Django, CSS, HTML and Javascript.
 
-Payments are handled via stripe API. 
+Payments are handled via stripe API.
+
+All images are hosted in a specific AWS Bucket created for the project.
 
 To log into the app please click the 'Hello! Sign In' link in the nav bar at the top of the page, and click on the register button. 
 
@@ -60,6 +62,8 @@ The project criteria specified that PostgreSQL be used as the database for the p
 Database model can be found [here](/static/media/img/gv_db.pdf )
 
 ## Back End
+
+The back end was developed using Django 1.11.28 and Python.
 
 ## Front end and UX 
 

@@ -1,0 +1,29 @@
+{% autoescape off %}
+
+	Dear {{ user }},
+
+	Thank you for your order. Your order number is {{orders.id}}.
+
+	Payment has been successful. A summary of your order is below:
+	
+
+    {% for product in products %}
+
+    {{product.quantity}} x {{product.title}} @ £{{product.price}}
+
+    {% endfor %}
+
+    Sub Total: £{{total}}
+
+    Delivery Address:
+    
+    {{orders.street_address_1}} {{orders.street_address_2}}
+    {{orders.postcode}}
+
+
+
+	Best,
+
+	The Golf Vouchers Team.
+
+{% endautoescape %}

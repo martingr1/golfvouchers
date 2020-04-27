@@ -1,0 +1,12 @@
+
+        Welcome to Golf Vouchers!
+        Dear {{ user }},
+
+        Thanks for joining Golf Vouchers, we're delighted to have you on board.
+
+        You can now log in to the site. If you have any questions please contact us at golfvouchersreset@gmail.com.
+        
+        
+        Best,
+
+        The Golf Vouchers Team.

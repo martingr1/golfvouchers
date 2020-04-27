@@ -167,6 +167,13 @@ The app was developed with the following technologies:
 Acknowledgements 
 =====
 
+The following resources were helpful during development.
+
+- [Denis Ivy](https://www.youtube.com/watch?v=G-Rct7Na0UQ&t=305s)
+- [JustDjango](https://www.youtube.com/watch?v=vU0VeFN-abU&t=506s)
+- [Django for Professionals](https://www.amazon.co.uk/Django-Professionals-Production-websites-Python/dp/1081582162/ref=sr_1_1?crid=XWG1N8YDHWG7&dchild=1&keywords=django+for+professionals&qid=1588013044&sprefix=django+for+pro%2Caps%2C148&sr=8-1)
+- Tutors at the Code Institute - various shared repositories for code and ideas
+- [Master Code Online](https://www.youtube.com/watch?v=A-7vGF_pEss)
 
 
 

@@ -13,6 +13,21 @@ Deployment
 
 To access the live app, please go [here](https://golfvouchers.herokuapp.com/) .
 
+To log into the app please click the 'Hello! Sign In' link in the nav bar at the top of the page, and click on the register button. 
+
+You can then create a new account with your email address. A confirmation email will be sent to your registered email confirming successful registration.
+
+Please note, email addresses and usernames must be unique.
+
+You will then be able to log in to the site and make purchases.
+
+Please use the following test card details for purchases:
+
+Card number: 4242424242424242
+Expiry Month: 4
+Expiry Year: 2022 (Any future date will work)
+CVV: 111 (Any 3 digit number will work)
+
 Code is stored in my github repository [here](https://github.com/martingr1/golfvouchers) .
 
 Project Criteria
@@ -38,10 +53,7 @@ The project criteria specified that PostgreSQL be used as the database for the p
 
 ## Back End
 
-
 ## Front end and UX 
-
-The front end was coded using HTML5, CSS and Jinja. Bootstrap 4 was used for styling and layout and responsiveness.
 
 My main design philosophies were:
 
@@ -54,9 +66,9 @@ My main design philosophies were:
 
 There are two main user stories for this project.
 
-## Golfer 1
+## User
 
-As a golfer and user of the site I want to be able to register/sign in easily, find products I want to buy and make a purchase.
+As a customer and user of the site I want to be able to register/sign in easily, find products I want to buy and make a purchase.
 
 ## Site owner
 
@@ -108,15 +120,27 @@ Project Testing
 
 ## Automated Tests
 
-Automated tests were created for the Login and Registration functions.
+15 automated tests were created to cover the following topics:
 
+1. Accounts - Views, Forms
+2. Cart - Views
+3. Checkout - Views
+4. Posts - Views
+
+## Manual Tests
+
+Manual testing was conducted to check payments and error messages.
+
+The testing document can be found here.
 
 Known Issues
 =====
 
-There is a current known issue with confirmation emails being sent to users after purchase showing duplicate order line items. 
+There is a current known issue with confirmation emails being sent to users after purchase showing duplicate order line items.
 
-This is a cosmetic issue. The line items are charged at the correct amount
+As a workaround, line items are not currently listed in order confirmations. Address details, Order details and a total for the transaction are sent correctly. 
+
+This is a cosmetic issue. The line items are charged at the correct amount.
 
 Acknowledgements 
 =====
@@ -130,8 +154,5 @@ As the site grows, it will be necessary to implement some new features not inclu
 
 The list below is not exhaustive and will be added to over time in order to keep the site viable.
 
-1. Password retrieval and reset function.
-2. User Profiles.
-3. Image hosting.
-4. Fully functioning affiliate links.
-5. Additional filters
+1. Customer profile pages.
+2. Order management system.

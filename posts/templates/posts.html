@@ -51,6 +51,13 @@
 						<div class="row review-text lead">
 							<p class="lead links">£{{ post.price }}</p>
 						</div>
+						<div class="row review-text lead">
+							{% if post.initial_quantity == 0 %}
+							<p class="lead links">Currently out of stock.</p>
+							{% else %}
+							<p class="lead links">{{ post.initial_quantity }} in stock.</p>
+							{% endif %}
+						</div>
 					</div>
 			</div>
 

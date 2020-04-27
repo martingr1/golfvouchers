@@ -18,8 +18,8 @@
 /* --- Global styles --- */
 
 .jumbotron {
-    background-image: url("");
-    background-position: 50% 50%;
+    background-image: url("https://golfvouchers.s3-eu-west-1.amazonaws.com/static/media/img/st_andrews.jpg");
+    background-size: cover;
 }
 
 .footer {

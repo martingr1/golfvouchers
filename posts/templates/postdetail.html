@@ -1,31 +1,41 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="container">
-	<a href="{% url 'get_posts' %}"><p class="mt-1 lead">< Back</p>
-		</a> 
-        <div class="col-xs-12">
-			{% if post.image %}
-			<img class="img-post" src="{{ MEDIA_URL }}{{ post.image }}">
+	<a class = "links" href="{% url 'get_posts' %}">
+		<p class="mt-1 lead">
+			&lt; Back</p> </a> <div class="col-xs-12">
+				{% if post.image %}
+				<img class="img-post" src="{{ MEDIA_URL }}{{ post.image }}">
             {% endif %}
 		</div>
-			<div class="col-xs-12">
-				<h3>{{ post.title }}</h3>
-				<p class="mt-1 lead">Price: £{{post.price }}</p>
-				<p class="mt-1 lead">{{ post.content }}</p>
-			</div>
-			<p class="mt-1 lead">Views: {{post.views}}</p>
-			{% if user.is_staff %}
-			<a href="{% url 'edit_post' post.id %}" class="btn btn-default">Edit Product</a>
-			{% endif %}
-			<div class="col-xs-6">
-				<form method="post" action="{% url 'add_to_cart' post.id %}">
-					{% csrf_token %}
-					<div class="input-group col-xs-6">
-						<input name="quantity" value="0" type="number" min="0" max="99">
-						<button class="btn btn-success" type="submit">Add to cart</button>
-					</div>
-				</form>
-			</div>
+				<div class="col-xs-12">
+					<h3>{{ post.title }}</h3>
+					<p class="mt-1 lead">Price: £{{post.price }}</p>
+					<p class="mt-1 lead">{{ post.content }}</p>
+				</div>
+				<div class="row review-text lead">
+					<p class="mt-1 lead">Views: {{post.views}}</p>
+				</div>
+				<div class="row review-text lead">
+
+					{% if post.initial_quantity == 0 %}
+					<p class="lead links">Currently out of stock.</p>
+					{% else %}
+					<p class="lead links">{{ post.initial_quantity }} in stock.</p>
+					{% endif %}
+				</div>
+				{% if user.is_staff %}
+				<a href="{% url 'edit_post' post.id %}" class="btn btn-default">Edit Product</a>
+				{% endif %}
+				<div class="col-xs-6">
+					<form method="post" action="{% url 'add_to_cart' post.id %}">
+						{% csrf_token %}
+						<div class="input-group col-xs-6">
+							<input name="quantity" value="0" type="number" min="0" max="99">
+							<button class="btn btn-success" type="submit">Add to cart</button>
+						</div>
+					</form>
+				</div>
 </div>
 
 {% endblock %}

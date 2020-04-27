@@ -4,6 +4,9 @@
 
 {% block content %}
 <div class="container">
+<a class = "links" href="{% url 'get_posts' %}">
+		<p class="mt-1 lead">
+			&lt; Back</p> </a> 
 	<p class="lead mt-5">Your Shopping Basket</p>
 	<hr>
 	{% for item in cart_items %}

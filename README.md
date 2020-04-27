@@ -53,13 +53,13 @@ Project Design
 
 The project criteria specified that PostgreSQL be used as the database for the project.
 
-![Database Model](/static/media/img/gv_db.pdf "DB model")
+Database model can be found [here](/static/media/img/gv_db.pdf )
 
 ## Back End
 
 ## Front end and UX 
 
-![UX](/static/media/img/gv_ux.pdf "UX wireframes")
+Ux Wireframes can be found [here](/static/media/img/gv_ux.pdf )
 
 My main design philosophies were:
 
@@ -137,19 +137,13 @@ Project Testing
 
 Manual testing was conducted to check payments and error messages.
 
-The testing document can be found here.
+The testing document can be found [here](/static/media/img/gv_tests.pdf) .
 
-Known Issues
-=====
-
-There is a current known issue with confirmation emails being sent to users after purchase showing duplicate order line items.
-
-As a workaround, line items are not currently listed in order confirmations. Address details, Order details and a total for the transaction are sent correctly. 
-
-This is a cosmetic issue. The line items are charged at the correct amount.
 
 Acknowledgements 
 =====
+
+
 
 
 
@@ -160,5 +154,5 @@ As the site grows, it will be necessary to implement some new features not inclu
 
 The list below is not exhaustive and will be added to over time in order to keep the site viable.
 
-1. Customer profile pages.
+1. Build out customer profile pages for order tracking and payment details.
 2. Order management system.

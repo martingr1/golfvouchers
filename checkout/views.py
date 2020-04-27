@@ -19,7 +19,7 @@ def checkout(request):
     if request.method == 'POST':
         order_form = OrderForm(request.POST)
         payment_form = MakePaymentForm(request.POST)
-        
+    #Check if order form is correct
         if order_form.is_valid() and payment_form.is_valid():
             order = order_form.save(commit=False)
             order.date = timezone.now()
@@ -27,7 +27,7 @@ def checkout(request):
             cart = request.session.get('cart', {})
             total = 0
             products = []
-    
+    #Loop over items in cart, calculate total price
             for id, quantity in cart.items():
                 product = get_object_or_404(Post, pk=id)
                 total += quantity * product.price
@@ -46,8 +46,6 @@ def checkout(request):
       
                 })
 
-            print(products) 
-
             try:
                 customer = stripe.Charge.create(
                     amount=int(total * 100),
@@ -57,7 +55,7 @@ def checkout(request):
                         )
             except stripe.error.CardError:
                 messages.error(request, "Your card has been declined")
-            
+            #If successful, confirm message and send confirmation email
             if customer.paid:
                 messages.error(request, "Transaction complete")
                 product.initial_quantity = product.initial_quantity - quantity
@@ -80,7 +78,7 @@ def checkout(request):
                 cart = request.session['cart'] = {}
                 print(html_template)
                 return redirect(reverse('get_posts'))
-
+        #If not successful, error messages.
             else:
                 messages.error(request, "Unable to take payment")
         else: 

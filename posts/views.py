@@ -8,7 +8,7 @@ from .filters import PostFilter
 
 
 def get_posts(request):
-
+#Get a list of all products, sorted by date
     posts_list = Post.objects.filter(listed_date__lte=timezone.now()).order_by('listed_date')
     post_filter = PostFilter(request.GET, queryset=posts_list)
     posts_list = post_filter.qs

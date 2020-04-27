@@ -1,8 +1,14 @@
 {% extends 'base.html' %}
 {% load static from staticfiles %}
 {% load bootstrap_tags %}
+{% block page_title %}Cart{% endblock %}
+
+{% block page_heading %}Shopping Cart{% endblock %}
 
 {% block content %}
+
+<!-- Cart Section -->
+
 <div class="container">
 <a class = "links" href="{% url 'get_posts' %}">
 		<p class="mt-1 lead">

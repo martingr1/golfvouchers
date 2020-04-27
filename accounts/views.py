@@ -21,9 +21,9 @@ def logout(request):
     messages.success(request,  "You have successfully been logged out.")
     return redirect(reverse('get_posts'))
 
-
 def login(request):
     
+
     if request.user.is_authenticated:
         return redirect(reverse('get_posts'))
 
@@ -52,12 +52,12 @@ def register(request):
 
     if request.method == "POST":
         registration_form = UserRegistrationForm(request.POST)
-
+#Check if registration is valid.
         if registration_form.is_valid():
             registration_form.save()
 
             user = auth.authenticate(username=request.POST['username'], password =request.POST['password1'])
-        
+#If successful, submit to database and send confirmation email. 
             if user:
                 auth.login(user=user, request=request)
                 messages.success(request, "You have successfully registered with GolfVouchers! Please log in.")

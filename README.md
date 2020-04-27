@@ -107,11 +107,15 @@ Uses can reset their password by clicking on the reset password link on the logi
 
 ## Posts (Product)
 
+![Product](/static/media/img/gv_prod.jpg "Product")
+
 On the main page, users can see a display of all products in the database. To avoid congestion, all results are limited to 12 results per page. There is pagination at the bottom of the screen so that the user can navigate through results.
 
 A variation of a Post model was used for products to allow Admins to easily post new products to the database via the admin panel. This is only visible by admin users.
 
 ## Search and Filter
+
+![Filters](/static/media/img/gv_filters.jpg "Filters")
 
 To find products, users can easily search using the search bar at the top of the page. 
 
@@ -149,6 +153,7 @@ Manual testing was conducted to check cart functionality, inventory management, 
 
 The testing document can be found [here](/static/media/img/gv_tests.pdf) .
 
+Responsiveness was tested on Apple iPhone X, iPad, Samsung Galaxy S8 and Apple iPhone 5s.
 
 Technologies
 =====

@@ -1,5 +1,6 @@
 {% autoescape off %}
 {% load static from staticfiles %}
+{% load bootstrap4 %}
 
 <!DOCTYPE html>
 <html>
@@ -11,7 +12,7 @@
 	<h1>Thank you for your order!</h1>
 	<p class="lead">Dear {{ user }},</p>
 
-	<p class="lead">Thank you for your order. Your order number is {{orders.id}}</p>
+	<p class="lead">Thank you for your order. Your order number is {{orders.id}} .</p>
 
 	<p class="lead">Payment has been successful. A summary of your order is below:
 	</p>

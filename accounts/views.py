@@ -61,6 +61,8 @@ def register(request):
             if user:
                 auth.login(user=user, request=request)
                 messages.success(request, "You have successfully registered with GolfVouchers! Please log in.")
+                user = request.user.username
+                context = {"user": user}
                 subject = "Thank you for registering with Golf Vouchers"
                 from_email = settings.EMAIL_HOST_USER
                 to_email = [request.user.email]
@@ -68,7 +70,7 @@ def register(request):
                     signup_message = f.read()
                 message = EmailMultiAlternatives(subject=subject, body=signup_message, from_email=from_email,
                     to=to_email)
-                html_template = get_template("sign_up.html").render()
+                html_template = get_template("sign_up.html").render(context)
                 message.attach_alternative(html_template, "text/html")
                 message.send()
                 return redirect(reverse('login'))

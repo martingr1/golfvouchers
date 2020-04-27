@@ -13,7 +13,11 @@ The app is an ecommerce website for golfers to find deals on new golf equipment,
 Deployment
 ======
 
-To access the live app, please go [here](https://golfvouchers.herokuapp.com/) .
+To run the live app hosted on Heroku, please go [here](https://golfvouchers.herokuapp.com/) .
+
+This project was written in Gitpod IDE, using Python, Django, CSS, HTML and Javascript.
+
+Payments are handled via stripe API. 
 
 To log into the app please click the 'Hello! Sign In' link in the nav bar at the top of the page, and click on the register button. 
 
@@ -133,12 +137,28 @@ Project Testing
 3. Checkout - Views
 4. Posts - Views
 
+These tests can be found in the respective code folders in the github repository.
+
 ## Manual Tests
 
-Manual testing was conducted to check payments and error messages.
+Manual testing was conducted to check cart functionality, inventory management, payments and error messages.
 
 The testing document can be found [here](/static/media/img/gv_tests.pdf) .
 
+
+Technologies
+=====
+
+The app was developed with the following technologies:
+
+1. Django 1.11.28
+2. Python 3.7
+3. PostgreSQL
+4. Javascript / jQuery
+5. Bootstrap 4
+6. HTML
+7. CSS
+8. Stripe
 
 Acknowledgements 
 =====

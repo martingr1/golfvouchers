@@ -51,9 +51,13 @@ Project Design
 
 The project criteria specified that PostgreSQL be used as the database for the project.
 
+![Database Model](/static/media/img/gv_db.pdf "DB model")
+
 ## Back End
 
 ## Front end and UX 
+
+![UX](/static/media/img/gv_ux.pdf "UX wireframes")
 
 My main design philosophies were:
 

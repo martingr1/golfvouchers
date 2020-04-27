@@ -24,7 +24,7 @@
 			background-color: #ffffff;
 		}
 	</style>
-	<nav class="navbar navbar-light navbar-expand-lg bg-dark text-white">
+	<nav class="navbar navbar-dark navbar-expand-lg bg-dark text-white">
 		<a class="navbar-brand" href="{% url 'get_posts' %}">GolfVouchers</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -32,33 +32,29 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			{% if user.is_authenticated %}{% if user.is_staff %}
 			<div class="d-flex align-items-center justify-content-center">
-				<i class="material-icons login-icon">account_box</i>Admin
+				<i class="material-icons login-icon">account_box</i><p class="lead mt-3 mr-2">Admin</p>
 				{% else %}
-				<i class="material-icons login-icon">account_box</i>{{ user }}
+				<i class="material-icons login-icon">account_box</i><p class="lead mt-3 mr-2">{{ user }}</p>
 				{% endif %}
 				{% endif %}
+               
+				{% if user.is_authenticated %}
+				<a class="lead text-white" href="{% url 'logout' %}">
+					Sign Out
+				</a>
+				{% else %}
+				<a class="lead text-white" href="{% url 'login' %}">
+					Hello! Sign In
+				</a>
+				{% endif %}
 			</div>
-			<div class="col">
-				<ul class="mt-2 navbar-nav align-items-center justify-content-center">
-					{% if user.is_authenticated %}
-					<li class="nav-item"><a href="{% url 'logout' %}">
-							Sign Out
-						</a></li>
-					{% else %}
-					<li class="nav-item"><a href="{% url 'login' %}">
-							Hello! Sign In
-						</a></li>
-					{% endif %}
-				</ul>
-			</div>
-			<div class="align-items-center justify-content-center">
-				<a class="align-items-center justify-content-center"
-					href="{% url 'view_cart' %}"><i class="material-icons">shopping_cart</i>(£{{total}})</a>
-			</div>
-			<form action="{% url 'search' %}" class="form-inline my-2 my-lg-0">
-				<input class="form-control mr-sm-2" type="text" name="q" placeholder="Search" aria-label="Search">
-				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-			</form>
+		</div>
+		<a class="lead text-white mt-2"
+			href="{% url 'view_cart' %}"><i class="material-icons">shopping_cart</i>(£{{total}})</a>
+		<form action="{% url 'search' %}" class="form-inline my-2 my-lg-0">
+			<input class="form-control mr-sm-2" type="text" name="q" placeholder="Search" aria-label="Search">
+			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+		</form>
 		</div>
 	</nav>
 
@@ -78,27 +74,10 @@
 			</div>
 		</div>
 	</div>
-	<div class="container">
-		{% endfor %}
-		{% endif %}
-		{% block content %}
-		{% endblock %}
-	</div>
-    <hr>
-	<footer>
-		<nav class="navbar-light bg-dark text-white">
-			<div class="row justify-content-center">
-				<span class="lead">GolfVouchers</span>
-			</div>
-			<div class="row justify-content-center">
-				<span class="lead links"><i class="fab fa-twitter"></i><i class="fab fa-facebook"></i><i class="fab fa-instagram"></i></span>
-			</div>
-			<div class="row justify-content-center">
-				<span class="lead">&copy; Martin Russell 2020 <a href="https://github.com/martingr1/golfvouchers"><i class="links fab fa-github"></i></a></span>
-				<span></span>
-			</div>
-		</nav>
-	</footer>
+	{% endfor %}
+	{% endif %}
+	{% block content %}
+	{% endblock %}
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script type="text/javascript" src="{% static 'js/scripts.js' %}"></script>
 

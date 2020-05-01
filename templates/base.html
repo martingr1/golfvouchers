@@ -2,6 +2,7 @@
 {% load static from staticfiles %}
 <html lang="en">
 <html>
+
 <head>
 	<title>GolfVouchers</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,6 +12,9 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	<link rel="stylesheet" href="{% static 'css/custom.css' %}" type="text/css" />
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+		integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+	</script>
 	{% block head_js %}
 	{% endblock head_js %}
 </head>
@@ -21,7 +25,7 @@
 			background-color: #ffffff;
 		}
 	</style>
-<!--- Navbar --->
+	<!--- Navbar --->
 
 	<nav class="navbar navbar-dark navbar-expand-lg bg-dark text-white">
 		<a class="navbar-brand" href="{% url 'get_posts' %}">GolfVouchers</a>
@@ -49,15 +53,15 @@
 				</a>
 				{% endif %}
 			</div>
+			<a class="lead text-white mt-2"
+				href="{% url 'view_cart' %}"><i class="material-icons">shopping_cart</i>(£{{total}})</a>
+			<form action="{% url 'search' %}" class="form-inline my-2 my-lg-0">
+				<input class="form-control mr-sm-2" type="text" name="q" placeholder="Search" aria-label="Search">
+				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+			</form>
 		</div>
-		<a class="lead text-white mt-2"
-			href="{% url 'view_cart' %}"><i class="material-icons">shopping_cart</i>(£{{total}})</a>
-		<form action="{% url 'search' %}" class="form-inline my-2 my-lg-0">
-			<input class="form-control mr-sm-2" type="text" name="q" placeholder="Search" aria-label="Search">
-			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-		</form>
 	</nav>
-    <!--- Messages --->
+	<!--- Messages --->
 	{% if messages %}
 	{% for message in messages %}
 	<div class="container">
@@ -79,8 +83,8 @@
 	{% block content %}
 	{% endblock %}
 
-<hr class="my-5">
-<!-- Footer Section -->
+	<hr class="my-5">
+	<!-- Footer Section -->
 	<footer class="footer d-flex flex-column">
 		<nav class="text-muted text-white bg-dark">
 			<div class="container">

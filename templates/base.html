@@ -53,13 +53,14 @@
 				</a>
 				{% endif %}
 			</div>
-			<a class="lead text-white mt-2"
-				href="{% url 'view_cart' %}"><i class="material-icons">shopping_cart</i>(£{{total}})</a>
-			<form action="{% url 'search' %}" class="form-inline my-2 my-lg-0">
-				<input class="form-control mr-sm-2" type="text" name="q" placeholder="Search" aria-label="Search">
-				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-			</form>
 		</div>
+		<a class="lead text-white mt-2"
+			href="{% url 'view_cart' %}"><i class="material-icons">shopping_cart</i>(£{{total}})</a>
+		<form action="{% url 'search' %}" class="form-inline my-2 my-lg-0">
+			<input class="form-control mr-sm-2" type="text" name="q" placeholder="Search" aria-label="Search">
+			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+		</form>
+
 	</nav>
 	<!--- Messages --->
 	{% if messages %}

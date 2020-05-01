@@ -73,8 +73,8 @@ def checkout(request):
                 message = EmailMultiAlternatives(subject=subject, body=checkout_message, from_email=from_email,
                     to=to_email)  
                 html_template = get_template("checkout_email.html").render(context)
-                #message.attach_alternative(html_template, "text/html")
-                #message.send()
+                message.attach_alternative(html_template, "text/html")
+                message.send()
                 cart = request.session['cart'] = {}
                 print(html_template)
                 return redirect(reverse('get_posts'))
